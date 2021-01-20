@@ -1,0 +1,142 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.3.72"
+    ext.versions = [
+            'minSdk'                : 16,
+            'compileSdk'            : 30,
+            'buildTools'            : '30.0.1',
+
+            'code'                  : 1,
+            'name'                  : "1.0",
+
+            'android_gradle'        : '4.0.2',
+            'kotlin'                : '1.3.72',
+            'ktlint'                : '9.2.1',
+
+            'ktx'                   : "1.3.2",
+            'appcompat_lib'         : '1.2.0',
+            'legacy'                : '1.0.0',
+            'preference'            : '1.1.1',
+            'material'              : '1.2.1',
+            'constraint_layout'     : '2.0.4',
+
+            'dagger'                : '2.26',
+            'hilt'                  : '2.28-alpha',
+
+            'retrofit'              : '2.9.0',
+            'okhttp'                : '3.8.1',
+            'gson'                  : '1.5.0',
+            'picasso'               : '2.71828',
+            'circleimage'           : '3.0.1',
+            'shimmer'               : '0.4.0',
+            'lottie'                : '3.3.1',
+
+            'room'                  : '2.2.5',
+            'navigation'            : '2.3.1',
+            'lifeycle'              : '2.2.0',
+            'paging'                : '2.1.1',
+            'workmanager'           : '2.4.0',
+
+            'junit'                 : '4.13.1',
+            'junit_ext'             : '1.1.2',
+            'espresso'              : '3.3.0',
+            'android_test'          : '1.3.0',
+
+            'sourceCompat'          : JavaVersion.VERSION_1_8,
+            'targetCompat'          : JavaVersion.VERSION_1_8,
+    ]
+    ext.deps = [
+            android    : [
+                    'gradle': "com.android.tools.build:gradle:${versions.android_gradle}"
+            ],
+            kotlin     : [
+                    'stdlib'    : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+                    'gradle'    : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+            ],
+            ktx     : [
+                    'core'    : "androidx.core:core-ktx:${versions.ktx}"
+            ],
+            support    : [
+                    'appcompat'   : "androidx.appcompat:appcompat:${versions.support_lib}",
+                    'material'  : "com.google.android.material:material:${versions.material}",
+                    'constraint' : "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}",
+                    'legacy'   : "androidx.legacy:legacy-support-v4:${versions.legacy}",
+                    'preference' : "androidx.preference:preference:${versions.preference}"
+            ],
+            di     : [
+                    'dagger'        : "com.google.dagger:dagger:${versions.dagger}",
+                    'dagger_compiler' : "com.google.dagger:dagger-compiler:${versions.dagger}",
+                    'dagger_support': "com.google.dagger:dagger-android-support:${versions.dagger}",
+                    'processor'     : "com.google.dagger:dagger-android-processor:${versions.dagger}",
+                    'hilt'          : "com.google.dagger:hilt-android:${versions.hilt}",
+                    'hilt_compiler' : "com.google.dagger:hilt-android-compiler:${versions.hilt}",
+                    'hilt_gradle'   : "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+            ],
+            network     : [
+                    'retrofit': "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    'gson' : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+                    'okhttp' : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+            ],
+            navigation: [
+                    "safe_args" : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}",
+                    'runtime' : "androidx.navigation:navigation-runtime-ktx:${versions.navigation}",
+                    'fragment' : "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                    'ui'    : "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+            ],
+            room : [
+                    'ktx' : "androidx.room:room-ktx:${versions.room}",
+                    'runtime' : "androidx.room:room-runtime:${versions.room}",
+                    'compiler' : "androidx.room:room-compiler:${versions.room}"
+            ],
+            aac: [
+                    'extensions'    : "androidx.lifecycle:lifecycle-extensions:${versions.lifeycle}",
+                    'livedata'      : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifeycle}",
+                    'viewmodel'     : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifeycle}",
+                    'paging'        : "androidx.paging:paging-runtime-ktx:${versions.paging}",
+                    'workmanager'   : "androidx.work:work-runtime-ktx:${versions.workmanager}"
+            ],
+            others     : [
+                    'circleimage'   : "de.hdodenhof:circleimageview:${versions.circleimage}",
+                    'picasso'   : "com.squareup.picasso:picasso:${versions.picasso}",
+                    'ktlint'    : "org.jlleitschuh.gradle:ktlint-gradle:${versions.ktlint}",
+                    'shimmer'   : "com.facebook.shimmer:shimmer:${versions.shimmer}",
+                    'lottie'    : "com.airbnb.android:lottie:${versions.lottie}"
+            ],
+            test       : [
+                    'junit'   : "junit:junit:${versions.junit}",
+                    'junit_ext'   : "androidx.test.ext:junit:${versions.junit_ext}",
+                    'espresso_core': "androidx.test.espresso:espresso-core:${versions.espresso}",
+                    'espresso_contrib': "androidx.test.espresso:espresso-contrib:${versions.espresso}",
+                    "runner"   : "androidx.test:runner:${versions.android_test}",
+                    "rules"   : "androidx.test:rules:${versions.android_test}"
+            ]
+    ]
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath deps.android.gradle
+        classpath deps.kotlin.gradle
+        classpath deps.others.ktlint
+        classpath deps.navigation.safe_args
+        classpath deps.di.hilt_gradle
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

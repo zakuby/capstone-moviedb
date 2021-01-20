@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        applicationId "com.dicoding.capstone"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.code
+        versionName versions.name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'API_KEY', '"1a126cf2d173cb236c4e2aace5aa86d1"'
+//            signingConfig signingConfigs.production
+        }
+        debug {
+            buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'API_KEY', '"1a126cf2d173cb236c4e2aace5aa86d1"'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation deps.kotlin.stdlib
+    implementation deps.ktx.core
+
+    //Support libs
+    implementation deps.support.appcompat
+    implementation deps.support.material
+    implementation deps.support.constraint
+    implementation deps.support.legacy
+    implementation deps.support.preference
+
+    //Android Architecture Component
+    implementation deps.aac.extensions
+    implementation deps.aac.livedata
+    implementation deps.aac.viewmodel
+    implementation deps.aac.paging
+    implementation deps.aac.workmanager
+
+    //Navigation
+    implementation deps.navigation.runtime
+    implementation deps.navigation.fragment
+    implementation deps.navigation.ui
+
+    //Networking
+    implementation deps.network.retrofit
+    implementation deps.network.gson
+    implementation deps.network.okhttp
+
+    //Dagger
+    implementation deps.di.dagger
+    implementation deps.di.dagger_support
+    implementation deps.di.hilt
+    kapt deps.di.dagger_compiler
+    kapt deps.di.hilt_compiler
+    kapt deps.di.processor
+
+    //Room
+    implementation deps.room.ktx
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+
+    implementation deps.others.picasso
+    implementation deps.others.circleimage
+    implementation deps.others.shimmer
+    implementation deps.others.lottie
+
+    androidTestImplementation deps.test.espresso_core
+    androidTestImplementation deps.test.espresso_contrib
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.rules
+    androidTestImplementation deps.test.junit_ext
+    androidTestImplementation deps.test.junit
+    testImplementation deps.test.junit
+
+}
