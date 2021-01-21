@@ -1,4 +1,4 @@
-package com.dicoding.movie.data.local
+package com.dicoding.core.data.local.models
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

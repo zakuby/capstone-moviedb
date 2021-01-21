@@ -2,7 +2,7 @@ package com.dicoding.core.data.local.room
 //
 //import androidx.room.Database
 //import androidx.room.RoomDatabase
-//import com.dicoding.core.data.local.models.TvShow
+//import com.dicoding.tvshow.data.local.TvShow
 //import com.dicoding.movie.data.Movie
 //
 //@Database(

@@ -1,3 +1,4 @@
 include ':app',
         ':movie',
-        ':core'
+        ':core',
+        ':tvshow'
