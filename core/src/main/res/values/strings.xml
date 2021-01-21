@@ -1,0 +1,59 @@
+<resources>
+    <string name="roboto_regular" translatable="false">sans-serif</string>
+    <string name="roboto_light" translatable="false">sans-serif-light</string>
+    <string name="roboto_black" translatable="false">sans-serif-black</string>
+    <string name="list_item_movie_image_desc">Movie Image</string>
+    <string name="profile_github_account">Github Account</string>
+    <string name="profile_full_name">Full Name</string>
+    <string name="movie_detail_title">Movie Detail</string>
+    <string name="movie_list_title" translatable="false">The Movie DB</string>
+    <string name="title_profile">Profile</string>
+    <string name="profile_dicoding_account">Dicoding Account</string>
+    <string name="error_no_internet_connection">No internet connection\nPlease try again.</string>
+    <string name="button_retry">Retry</string>
+    <string name="error_no_whatsapp">Please Install Whatsapp.</string>
+    <string name="movie_list_more_info">More Info</string>
+    <string name="movie_detail_overview">Overview</string>
+    <string name="movie_detail_top_billed">Top Billed Cast</string>
+    <string name="bottom_nav_tv_show_title">TV Show</string>
+    <string name="bottom_nav_movie_title">Movie</string>
+    <string name="title_settings">Settings</string>
+    <string name="error_response_data">Something wrong with response data.</string>
+    <string name="error_internal">Internal server error.</string>
+    <string name="error_hotspot_login">Hotspot login required.</string>
+    <string name="error_request_timeout">Request Timeout.</string>
+    <string name="bottom_nav_favorite_title">Favorite</string>
+    <string name="dialog_title">Success !</string>
+    <string name="dialog_favorite_remove_desc">That\'s Sad..\nRemoved from Favorite List</string>
+    <string name="dialog_favorite_add_desc">Hooray !\nAdded to Favorite List</string>
+    <string name="button_add_favorite">Add Favorite</string>
+    <string name="empty_favorite_description">Oh no..\nLooks like you still you don\'t have any Favorites.</string>
+    <string name="hint_search_movie">Search Movies…</string>
+    <string name="hint_search_tv_show">Search Tv Shows…</string>
+
+    <string name="pref_key_language" translatable="false">key_language</string>
+    <string name="pref_language_name">Language</string>
+    <string name="pref_language_summary">Select language English or Bahasa Indonesia.</string>
+    <string name="pref_language_en" translatable="false">en</string>
+    <string name="pref_language_in" translatable="false">in</string>
+    <string name="language_mode_en">English</string>
+    <string name="language_mode_in">Bahasa Indonesia</string>
+
+    <string name="pref_key_notify_release_reminder" translatable="false">key_release_reminder</string>
+    <string name="pref_notify_release_reminder_name">Release Reminder</string>
+    <string name="pref_notify_release_reminder_summary">Reminder showing the movie that released today.</string>
+    <string name="notify_daily_content">The Movie DB missing you!</string>
+
+    <string name="pref_key_notify_daily_reminder" translatable="false">key_daily_reminder</string>
+    <string name="pref_notify_daily_reminder_name">Daily Reminder</string>
+    <string name="pref_notify_daily_reminder_summary">Reminder for return to app.</string>
+    <string name="notify_release_content">%1$s has been released today!</string>
+    <string name="btn_launch_movie_db">Launch Movie DB</string>
+    <string name="widget_empty">Favorite Movie is Empty</string>
+    <string name="movie_detail_genre">Genre</string>
+    <string name="dlg_bottom_filter_title">Filter by Genre</string>
+    <string name="button_add_apply">Apply Filter</string>
+    <string name="review_read_full">Read Full Review</string>
+    <string name="movie_detail_reviews">Reviews</string>
+    <string name="movie_detail_videos" translatable="false">Videos</string>
+</resources>
