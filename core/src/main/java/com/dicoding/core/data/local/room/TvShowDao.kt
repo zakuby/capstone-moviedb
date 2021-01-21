@@ -1,8 +1,8 @@
 package com.dicoding.core.data.local.room
 //
 //import androidx.room.*
-//import com.dicoding.core.data.local.models.TvShow
-//import com.dicoding.core.data.local.models.TvShow.Companion.TABLE_NAME
+//import com.dicoding.tvshow.data.local.TvShow
+//import com.dicoding.tvshow.data.local.TvShow.Companion.TABLE_NAME
 //
 //@Dao
 //interface TvShowDao {

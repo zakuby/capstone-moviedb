@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dicoding.core.base.BaseAdapter
 import com.dicoding.core.base.BaseViewHolder
-import com.dicoding.movie.data.local.Genre
-import com.dicoding.movie.databinding.ListItemGenreFilterBinding
+import com.dicoding.core.data.local.models.Genre
+import com.dicoding.movie.databinding.ItemGenreFilterBinding
 
-class GenreAdapter : BaseAdapter<Genre, ListItemGenreFilterBinding>() {
+class GenreAdapter : BaseAdapter<Genre, ItemGenreFilterBinding>() {
 
     override fun onBindViewHolder(
-        holder: BaseViewHolder<Genre, ListItemGenreFilterBinding>,
+        holder: BaseViewHolder<Genre, ItemGenreFilterBinding>,
         position: Int
     ) = holder.bind(getItem(position))
 
@@ -19,9 +19,9 @@ class GenreAdapter : BaseAdapter<Genre, ListItemGenreFilterBinding>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<Genre, ListItemGenreFilterBinding> {
+    ): BaseViewHolder<Genre, ItemGenreFilterBinding> {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ListItemGenreFilterBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemGenreFilterBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -30,7 +30,7 @@ class GenreAdapter : BaseAdapter<Genre, ListItemGenreFilterBinding>() {
         return checkedItems.joinToString(separator = ",") { it.id.toString() }
     }
 
-    inner class ViewHolder(binding: ListItemGenreFilterBinding) : BaseViewHolder<Genre, ListItemGenreFilterBinding>(binding){
+    inner class ViewHolder(binding: ItemGenreFilterBinding) : BaseViewHolder<Genre, ItemGenreFilterBinding>(binding){
         override fun bind(item: Genre) {
             binding.apply {
                 genre.setOnClickListener {

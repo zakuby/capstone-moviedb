@@ -7,7 +7,7 @@ import com.dicoding.core.base.BaseViewHolder
 import com.dicoding.movie.data.local.Movie
 import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.setProgressRating
-import com.dicoding.movie.databinding.ListItemMovieBinding
+import com.dicoding.movie.databinding.ItemMovieBinding
 
 class MovieAdapter(private val onClick: (Movie) -> Unit) : PagedListAdapter<Movie, MovieAdapter.ViewHolder>(
     Movie.DIFF_CALLBACK) {
@@ -19,11 +19,11 @@ class MovieAdapter(private val onClick: (Movie) -> Unit) : PagedListAdapter<Movi
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    inner class ViewHolder(binding: ListItemMovieBinding) : BaseViewHolder<Movie, ListItemMovieBinding>(binding){
+    inner class ViewHolder(binding: ItemMovieBinding) : BaseViewHolder<Movie, ItemMovieBinding>(binding){
         override fun bind(item: Movie) {
             binding.apply {
                 itemView.setOnClickListener { onClick(item) }

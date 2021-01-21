@@ -8,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dicoding.capstone.databinding.ActivityMainBinding
 import com.dicoding.movie.ui.MovieFragment
+import com.dicoding.tvshow.ui.TvShowFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     viewpager.setCurrentItem(
                         when (item.itemId){
                             R.id.movies_fragment -> 0
-                            R.id.favorite_fragment -> 1
+                            R.id.tv_show_fragment -> 1
                             else -> 2
                         }, false)
                     true
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         override fun getItemCount(): Int = 3
         override fun createFragment(position: Int): Fragment = when (position) {
             0 -> MovieFragment()
+            1 -> TvShowFragment()
             else -> Fragment()
         }
     }

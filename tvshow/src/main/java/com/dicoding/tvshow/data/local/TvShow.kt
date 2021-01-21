@@ -1,21 +1,23 @@
-package com.dicoding.movie.data.local
+package com.dicoding.tvshow.data.local
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.dicoding.core.data.local.models.Genre
 import com.dicoding.core.data.local.models.GenreConverter
-import com.dicoding.movie.data.local.Movie.Companion.TABLE_NAME
+import com.dicoding.tvshow.data.local.TvShow.Companion.TABLE_NAME
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = TABLE_NAME)
 @TypeConverters(GenreConverter::class)
-data class Movie(
+data class TvShow(
     @PrimaryKey
     val id: Int,
+    @SerializedName("name")
     val title: String?,
-    @SerializedName("release_date")
+    @SerializedName("first_air_date")
     val date: String?,
     @SerializedName("overview")
     val description: String?,
@@ -25,19 +27,20 @@ data class Movie(
     val posterImage: String?,
     @SerializedName("backdrop_path")
     val backgroundImage: String?,
-    val isMovie: Boolean? = true,
     var isFavorite: Boolean = false,
     val genres: List<Genre>? = emptyList()
 ) {
 
     companion object {
-        const val TABLE_NAME = "movie"
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
-            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+
+        const val TABLE_NAME = "tvshow"
+
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TvShow>() {
+            override fun areContentsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
                 return oldItem == newItem
             }
         }

@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        tools:listitem="@layout/list_item_genre_filter"
+        tools:listitem="@layout/item_genre_filter"
         tools:itemCount="5"
         app:layout_constraintTop_toBottomOf="@id/bottom_filter_title"/>
 
