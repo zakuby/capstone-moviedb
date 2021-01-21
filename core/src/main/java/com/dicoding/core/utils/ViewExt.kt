@@ -22,7 +22,7 @@ fun ImageView.loadImageUrl(url: String?, isFromBase: Boolean = true) {
         .into(this)
 }
 
-fun ShimmerFrameLayout.isShimmerStart(shimmerView: ShimmerFrameLayout, isShimmer: Boolean) =
+fun ShimmerFrameLayout.isShimmerStart(isShimmer: Boolean) =
     if (isShimmer) startShimmer() else stopShimmer()
 
 

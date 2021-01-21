@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
+import com.dicoding.core.data.remote.response.ErrorResponse
+import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.movie.data.local.Movie
 import com.dicoding.movie.data.remote.MovieRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
@@ -12,7 +14,8 @@ class MoviePageDataSourceFactory(
     private val dataSource: MovieRemoteDataSource,
     private val scope: CoroutineScope,
     private val genre: String? = "",
-    private val keywords: String? = ""
+    private val keywords: String? = "",
+    private val resultPaging: MutableLiveData<ResultPaging>
 ) : DataSource.Factory<Int, Movie>() {
 
     private val liveData = MutableLiveData<MoviePageDataSource>()
@@ -22,13 +25,12 @@ class MoviePageDataSourceFactory(
             dataSource,
             scope,
             genre,
-            keywords
+            keywords,
+            resultPaging
         )
         liveData.postValue(source)
         return source
     }
-
-    fun getDataSource(): LiveData<MoviePageDataSource> = liveData
 
     companion object {
         fun pagedListConfig() = PagedList.Config.Builder()

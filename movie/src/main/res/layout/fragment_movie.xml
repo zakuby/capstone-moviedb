@@ -20,7 +20,6 @@
             android:id="@+id/shimmer_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             app:shimmer_auto_start="true"
             tools:visibility="gone">
 
@@ -35,9 +34,11 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             tools:visibility="visible">
 
             <androidx.appcompat.widget.SearchView

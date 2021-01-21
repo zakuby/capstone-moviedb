@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.core.base.BaseFragment
+import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.utils.isGone
+import com.dicoding.core.utils.isShimmerStart
 import com.dicoding.core.utils.observe
 import com.dicoding.movie.data.local.FilterType
 import com.dicoding.movie.R
@@ -65,6 +68,24 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
     private fun subscribeUI() {
         observe(viewModel.movies, adapterMovie::submitList)
         observe(viewModel.genres, adapterGenre::submitList)
+        observe(viewModel.resultPaging, { result ->
+            when(result){
+                is ResultPaging.Empty -> {
+                    binding.apply {
+                        errorLayout.errorView.isGone(!result.isEmpty)
+                        container.isGone(result.isEmpty)
+                    }
+                }
+                is ResultPaging.Error -> binding.errorLayout.message.text = result.error.message
+                is ResultPaging.Loading -> {
+                    binding.apply {
+                        shimmerView.isShimmerStart(result.isLoading)
+                        shimmerView.isGone(!result.isLoading)
+                        layoutContainer.isGone(result.isLoading)
+                    }
+                }
+            }
+        })
     }
 
     private fun retryLoadMovie() = viewModel.searchMovies("")

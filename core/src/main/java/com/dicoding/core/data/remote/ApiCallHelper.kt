@@ -14,11 +14,14 @@ object ApiCallHelper {
                     return Result.Success(body)
                 } ?: return Result.Error(ErrorResponse(500, "Response is empty"))
             } else {
-                return Result.Error(ErrorResponse(response.code(), response.errorBody().toString()))
+                val errorMsg =
+                    if (response.errorBody().toString().isBlank()) "Something wrong happened. Please try again later."
+                    else response.errorBody().toString()
+                return Result.Error(ErrorResponse(response.code(), errorMsg))
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            return Result.Error(ErrorResponse(500, e.message ?: "Internal Server Error"))
+            return Result.Error(ErrorResponse(500, "Something wrong happened. Please try again later."))
         }
     }
 }
