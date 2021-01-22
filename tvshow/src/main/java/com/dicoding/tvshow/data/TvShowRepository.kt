@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.dicoding.core.data.local.models.TvShow
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.tvshow.data.local.TvShow
 import com.dicoding.tvshow.data.remote.TvShowRemoteDataSource
-import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineScope
 
 @Singleton
 class TvShowRepository @Inject constructor(

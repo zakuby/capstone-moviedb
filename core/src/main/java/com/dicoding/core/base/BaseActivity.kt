@@ -12,13 +12,13 @@ import androidx.preference.PreferenceManager
 import androidx.viewbinding.ViewBinding
 import com.dicoding.core.R
 import com.dicoding.core.utils.setWhiteStatusBar
-import java.util.*
+import java.util.Locale
 
 abstract class BaseActivity<VB : ViewBinding> constructor(
     private val isWhiteStatusBar: Boolean = true
 ) : AppCompatActivity() {
 
-    private  var _binding: ViewBinding? = null
+    private var _binding: ViewBinding? = null
     abstract val bindingInflater: (LayoutInflater) -> VB
 
     @Suppress("UNCHECKED_CAST")

@@ -1,6 +1,7 @@
 package com.dicoding.capstone
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -10,6 +11,7 @@ import com.dicoding.capstone.databinding.ActivityMainBinding
 import com.dicoding.movie.ui.MovieFragment
 import com.dicoding.tvshow.ui.TvShowFragment
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,13 +26,13 @@ class MainActivity : AppCompatActivity() {
         initBinding()
     }
 
-    private fun initBinding(){
+    private fun initBinding() {
         binding.apply {
             bottomNavBar.apply {
                 itemIconTintList = null
                 setOnNavigationItemSelectedListener { item ->
                     viewpager.setCurrentItem(
-                        when (item.itemId){
+                        when (item.itemId) {
                             R.id.movies_fragment -> 0
                             R.id.tv_show_fragment -> 1
                             else -> 2
@@ -54,7 +56,16 @@ class MainActivity : AppCompatActivity() {
         override fun createFragment(position: Int): Fragment = when (position) {
             0 -> MovieFragment()
             1 -> TvShowFragment()
-            else -> Fragment()
+            else -> loadFavoriteFragment()
+        }
+    }
+
+    private fun loadFavoriteFragment(): Fragment {
+        return try {
+            Class.forName("com.dicoding.favorite.ui.FavoriteFragment").newInstance() as Fragment
+        } catch (e: Exception) {
+            Toast.makeText(this, "Module not found", Toast.LENGTH_SHORT).show()
+            Fragment()
         }
     }
 }

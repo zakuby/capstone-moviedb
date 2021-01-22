@@ -1,6 +1,6 @@
 package com.dicoding.core.utils
 
-import java.util.*
+import java.util.Calendar
 
 const val PROVIDER_AUTHORITY = "com.dicoding.capstone.data.local.provider"
 

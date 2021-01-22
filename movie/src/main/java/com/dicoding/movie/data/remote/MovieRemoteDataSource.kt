@@ -17,5 +17,4 @@ class MovieRemoteDataSource @Inject constructor(
         }
 
     suspend fun getMovieGenres() = getResult { services.getMovieGenres() }
-
 }

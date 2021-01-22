@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
-    private  var _binding: ViewBinding? = null
+    private var _binding: ViewBinding? = null
     abstract val bindingInflater: (LayoutInflater) -> VB
 
     @Suppress("UNCHECKED_CAST")

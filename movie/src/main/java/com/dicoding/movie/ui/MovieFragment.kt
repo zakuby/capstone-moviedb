@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.core.base.BaseFragment
+import com.dicoding.core.data.local.models.FilterType
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart
 import com.dicoding.core.utils.observe
-import com.dicoding.core.data.local.models.FilterType
 import com.dicoding.movie.R
 import com.dicoding.movie.databinding.FragmentMovieBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,7 +30,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
 
     private val viewModel: MovieViewModel by viewModels()
 
-    private val adapterMovie by lazy { MovieAdapter{ movie -> println(movie)} }
+    private val adapterMovie by lazy { MovieAdapter { movie -> println(movie) } }
     private val adapterGenre by lazy { GenreAdapter() }
 
     override fun initBinding() {
@@ -69,7 +69,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
         observe(viewModel.movies, adapterMovie::submitList)
         observe(viewModel.genres, adapterGenre::submitList)
         observe(viewModel.resultPaging, { result ->
-            when(result){
+            when (result) {
                 is ResultPaging.Empty -> {
                     binding.apply {
                         errorLayout.errorView.isGone(!result.isEmpty)

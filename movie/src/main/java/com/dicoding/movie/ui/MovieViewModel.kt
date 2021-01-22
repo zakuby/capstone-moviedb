@@ -1,14 +1,19 @@
 package com.dicoding.movie.ui
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
+import com.dicoding.core.data.local.models.FilterType
+import com.dicoding.core.data.local.models.Genre
+import com.dicoding.core.data.local.models.Movie
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.movie.data.MovieRepository
-import com.dicoding.core.data.local.models.FilterType
-import com.dicoding.core.data.local.models.Genre
-import com.dicoding.movie.data.local.Movie
 
 class MovieViewModel @ViewModelInject constructor(
     private val repository: MovieRepository

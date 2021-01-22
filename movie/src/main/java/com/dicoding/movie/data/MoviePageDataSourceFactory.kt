@@ -1,12 +1,10 @@
 package com.dicoding.movie.data
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
-import com.dicoding.core.data.remote.response.ErrorResponse
+import com.dicoding.core.data.local.models.Movie
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.movie.data.local.Movie
 import com.dicoding.movie.data.remote.MovieRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 

@@ -9,7 +9,7 @@ import com.dicoding.core.R
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 fun ImageView.loadImageUrl(url: String?, isFromBase: Boolean = true) {
     if (url.isNullOrBlank()) return
@@ -24,7 +24,6 @@ fun ImageView.loadImageUrl(url: String?, isFromBase: Boolean = true) {
 
 fun ShimmerFrameLayout.isShimmerStart(isShimmer: Boolean) =
     if (isShimmer) startShimmer() else stopShimmer()
-
 
 fun ProgressBar.setProgressRating(stringRate: String?) {
     stringRate ?: return
@@ -46,11 +45,11 @@ fun ProgressBar.setProgressRating(stringRate: String?) {
     }
 }
 
-fun View.isGone(isGone: Boolean){
+fun View.isGone(isGone: Boolean) {
     visibility = if (isGone) View.GONE else View.VISIBLE
 }
 
-fun TextView.formatDate(date: String?){
+fun TextView.formatDate(date: String?) {
     if (date.isNullOrBlank()) {
         text = ""
         return

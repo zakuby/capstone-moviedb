@@ -3,8 +3,8 @@ package com.dicoding.tvshow.data
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
+import com.dicoding.core.data.local.models.TvShow
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.tvshow.data.local.TvShow
 import com.dicoding.tvshow.data.remote.TvShowRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 
