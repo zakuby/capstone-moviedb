@@ -1,4 +1,4 @@
-package com.dicoding.core.data.remote.response
+package com.dicoding.detail.data.remote
 
 import com.dicoding.core.data.local.models.Review
 

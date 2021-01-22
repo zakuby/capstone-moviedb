@@ -3,4 +3,5 @@ apply from: "$rootProject.projectDir/module.gradle"
 
 dependencies {
     implementation project(":core")
+    implementation project(":detail")
 }

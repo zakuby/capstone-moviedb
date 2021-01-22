@@ -1,8 +1,8 @@
-package com.dicoding.core.data.remote.response
+package com.dicoding.detail.data.remote
 
 import com.dicoding.core.data.local.models.Cast
 
-class MovieCreditsResponse(
+class CreditsResponse(
     val id: Int?,
     val cast: List<Cast>?
 )

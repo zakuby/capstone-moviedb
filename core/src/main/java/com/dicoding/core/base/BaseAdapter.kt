@@ -14,6 +14,8 @@ abstract class BaseAdapter<T, VB : ViewBinding> : RecyclerView.Adapter<BaseViewH
         notifyDataSetChanged()
     }
 
+    override fun onBindViewHolder(holder: BaseViewHolder<T, VB>, position: Int) = holder.bind(getItem(position))
+
     fun getItem(position: Int) = items[position]
 
     override fun getItemCount(): Int = items.size

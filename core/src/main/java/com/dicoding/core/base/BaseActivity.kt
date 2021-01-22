@@ -35,10 +35,6 @@ abstract class BaseActivity<VB : ViewBinding> constructor(
 
     abstract fun initBinding()
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(updateBaseContextLocale(newBase))

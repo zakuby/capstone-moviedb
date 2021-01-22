@@ -1,32 +1,28 @@
 package com.dicoding.capstone
 
-import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dicoding.capstone.databinding.ActivityMainBinding
+import com.dicoding.core.base.BaseActivity
 import com.dicoding.movie.ui.MovieFragment
 import com.dicoding.tvshow.ui.TvShowFragment
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
+
+abstract class BaseMainActivity : BaseActivity<ActivityMainBinding>()
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : BaseMainActivity() {
+
+    override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
 
     private val pagerAdapter by lazy { MainPagerAdapter(supportFragmentManager, lifecycle) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        initBinding()
-    }
-
-    private fun initBinding() {
+    override fun initBinding() {
         binding.apply {
             bottomNavBar.apply {
                 itemIconTintList = null

@@ -1,24 +1,22 @@
 package com.dicoding.favorite.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dicoding.capstone.FavoriteModuleDependencies
+import com.dicoding.core.di.FavoriteModuleDependencies
 import com.dicoding.core.base.BaseFragment
 import com.dicoding.core.data.local.models.TvShow
 import com.dicoding.core.utils.observe
+import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.favorite.databinding.FragmentFavoriteBinding
 import com.dicoding.favorite.di.DaggerFavoriteComponent
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
 
@@ -33,11 +31,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
         get() = FragmentFavoriteBinding::inflate
 
     private val movieAdapter by lazy {
-        FavoriteMovieAdapter { println("TODO: On click") }
+        FavoriteMovieAdapter { goToDetail(it.id, DetailType.MOVIE) }
     }
 
     private val tvShowAdapter by lazy {
-        FavoriteTvShowAdapter { println("TODO: On click") }
+        FavoriteTvShowAdapter { goToDetail(it.id, DetailType.TV_SHOW) }
     }
 
     override fun onAttach(context: Context) {
@@ -104,5 +102,13 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
             recyclerViewTvShow.visibility = if (tvShowAdapter.isEmpty()) View.GONE else View.VISIBLE
             recyclerViewMovie.visibility = View.GONE
         }
+    }
+
+    private fun goToDetail(id: Int, type: DetailType){
+        val detailIntent = Intent(activity, DetailActivity::class.java).apply {
+            putExtra(DetailActivity.EXTRA_DETAIL_ID, id)
+            putExtra(DetailActivity.EXTRA_DETAIL_TYPE, type)
+        }
+        startActivity(detailIntent)
     }
 }

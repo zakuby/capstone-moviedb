@@ -1,5 +1,6 @@
 package com.dicoding.tvshow.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart
 import com.dicoding.core.utils.observe
+import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.tvshow.R
 import com.dicoding.tvshow.databinding.FragmentTvShowBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +28,7 @@ class TvShowFragment : BaseFragment<FragmentTvShowBinding>() {
 
     private val viewModel: TvShowViewModel by viewModels()
 
-    private val adapterTvShow by lazy { TvShowAdapter { println(it) } }
+    private val adapterTvShow by lazy { TvShowAdapter { gotoDetailTvShow(it.id) } }
 
     override fun initBinding() {
         binding.apply {
@@ -81,4 +84,12 @@ class TvShowFragment : BaseFragment<FragmentTvShowBinding>() {
     }
 
     private fun retryLoadTvShow() = viewModel.searchTvShows("")
+
+    private fun gotoDetailTvShow(id: Int){
+        val detailIntent = Intent(activity, DetailActivity::class.java).apply {
+            putExtra(DetailActivity.EXTRA_DETAIL_ID, id)
+            putExtra(DetailActivity.EXTRA_DETAIL_TYPE, DetailType.TV_SHOW)
+        }
+        startActivity(detailIntent)
+    }
 }
