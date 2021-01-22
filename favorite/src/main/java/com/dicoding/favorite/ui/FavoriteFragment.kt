@@ -98,7 +98,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     private fun onTabTvShowSelected(){
-        tvShowAdapter.submitList(listOf(TvShow(0, "a", "01-01-1997", "b", "c", "", "")))
         binding.apply {
             emptyLayout.visibility = if (tvShowAdapter.isEmpty()) View.VISIBLE else View.GONE
             recyclerViewTvShow.visibility = if (tvShowAdapter.isEmpty()) View.GONE else View.VISIBLE
