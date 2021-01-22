@@ -13,5 +13,4 @@ class TvShowRemoteDataSource @Inject constructor(
                 services.searchTvShows(page = page, keyword = keywords)
             else services.getTopRatedTvShows(page = page)
         }
-
 }

@@ -1,14 +1,13 @@
 package com.dicoding.movie.data.remote
 
-import com.dicoding.movie.data.local.Movie
-import com.dicoding.movie.data.remote.GenreListResponse
-import com.dicoding.movie.data.remote.MovieListResponse
+import com.dicoding.core.data.local.models.Movie
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.text.SimpleDateFormat
-import java.util.*
 
 interface MovieServices {
 
@@ -39,7 +38,6 @@ interface MovieServices {
         @Query("page") page: Int = 1,
         @Query("query") keyword: String
     ): Response<MovieListResponse>
-
 
     @GET("genre/movie/list")
     suspend fun getMovieGenres(@Query("language") lang: String = "en-US"): Response<GenreListResponse>

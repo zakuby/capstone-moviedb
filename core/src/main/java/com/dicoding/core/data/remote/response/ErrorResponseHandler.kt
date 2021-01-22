@@ -2,12 +2,15 @@ package com.dicoding.core.data.remote.response
 
 import android.content.res.Resources
 import com.dicoding.core.R
+import com.dicoding.core.data.remote.response.ErrorResponse.Type.GENERAL
+import com.dicoding.core.data.remote.response.ErrorResponse.Type.HOTSPOT_LOGIN
+import com.dicoding.core.data.remote.response.ErrorResponse.Type.NO_INTERNET_CONNECTION
+import com.dicoding.core.data.remote.response.ErrorResponse.Type.REQUEST_TIMEOUT
 import com.google.gson.JsonSyntaxException
-import com.dicoding.core.data.remote.response.ErrorResponse.Type.*
-import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
+import retrofit2.HttpException
 
 @Singleton
 class ErrorResponseHandler @Inject constructor(

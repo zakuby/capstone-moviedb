@@ -36,7 +36,6 @@ dependencies {
     implementation deps.ktx.core
 
     //Support libs
-    implementation deps.support.appcompat
     implementation deps.support.material
     implementation deps.support.constraint
     implementation deps.support.legacy
@@ -81,7 +80,6 @@ dependencies {
     implementation deps.others.picasso
     implementation deps.others.circleimage
     implementation deps.others.shimmer
-    implementation deps.others.lottie
 
     androidTestImplementation deps.test.espresso_core
     androidTestImplementation deps.test.espresso_contrib

@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 class AppModule {
-
     @Provides
     @Singleton
     fun provideResources(@ApplicationContext context: Context): Resources = context.resources

@@ -14,8 +14,6 @@ class GenreAdapter : BaseAdapter<Genre, ItemGenreFilterBinding>() {
         position: Int
     ) = holder.bind(getItem(position))
 
-
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -30,7 +28,7 @@ class GenreAdapter : BaseAdapter<Genre, ItemGenreFilterBinding>() {
         return checkedItems.joinToString(separator = ",") { it.id.toString() }
     }
 
-    inner class ViewHolder(binding: ItemGenreFilterBinding) : BaseViewHolder<Genre, ItemGenreFilterBinding>(binding){
+    inner class ViewHolder(binding: ItemGenreFilterBinding) : BaseViewHolder<Genre, ItemGenreFilterBinding>(binding) {
         override fun bind(item: Genre) {
             binding.apply {
                 genre.setOnClickListener {
@@ -41,6 +39,5 @@ class GenreAdapter : BaseAdapter<Genre, ItemGenreFilterBinding>() {
                 genre.text = item.name
             }
         }
-
     }
 }

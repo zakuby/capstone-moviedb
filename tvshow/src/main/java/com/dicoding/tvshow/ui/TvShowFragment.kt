@@ -25,8 +25,7 @@ class TvShowFragment : BaseFragment<FragmentTvShowBinding>() {
 
     private val viewModel: TvShowViewModel by viewModels()
 
-    private val adapterTvShow by lazy { TvShowAdapter{println(it)} }
-
+    private val adapterTvShow by lazy { TvShowAdapter { println(it) } }
 
     override fun initBinding() {
         binding.apply {
@@ -62,7 +61,7 @@ class TvShowFragment : BaseFragment<FragmentTvShowBinding>() {
     private fun subscribeUI() {
         observe(viewModel.tvShows, adapterTvShow::submitList)
         observe(viewModel.resultPaging, { result ->
-            when(result){
+            when (result) {
                 is ResultPaging.Empty -> {
                     binding.apply {
                         errorLayout.errorView.isGone(!result.isEmpty)

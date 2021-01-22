@@ -5,8 +5,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import retrofit2.Retrofit
 import javax.inject.Singleton
+import retrofit2.Retrofit
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -14,6 +14,5 @@ class TvShowModule {
 
     @Provides
     @Singleton
-    fun provideTvShowServices(retrofit: Retrofit) = retrofit.create(TvShowServices::class.java)
-
+    fun provideTvShowServices(retrofit: Retrofit): TvShowServices = retrofit.create(TvShowServices::class.java)
 }

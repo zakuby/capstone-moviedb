@@ -19,15 +19,14 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.production
         }
         debug {
             minifyEnabled false
-            shrinkResources false
         }
     }
+    dynamicFeatures = [':favorite']
 }
 
 dependencies {
