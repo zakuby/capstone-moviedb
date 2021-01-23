@@ -10,7 +10,10 @@ import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.setProgressRating
 import com.dicoding.favorite.databinding.ItemFavoriteMovieBinding
 
-class FavoriteMovieAdapter(val onClick: (Movie) -> Unit) : BaseAdapter<Movie, ItemFavoriteMovieBinding>() {
+class FavoriteMovieAdapter(
+    val onClick: (Movie) -> Unit,
+    val removeButton: (Int) -> Unit
+) : BaseAdapter<Movie, ItemFavoriteMovieBinding>() {
 
     fun isEmpty() = items.isNullOrEmpty()
 
@@ -36,6 +39,7 @@ class FavoriteMovieAdapter(val onClick: (Movie) -> Unit) : BaseAdapter<Movie, It
                 movieRating.text = item.rate
                 movieTitle.text = item.title
                 movieDate.formatDate(item.date)
+                favoriteRemove.setOnClickListener { removeButton(item.id) }
             }
         }
     }

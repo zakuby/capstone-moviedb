@@ -10,7 +10,10 @@ import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.setProgressRating
 import com.dicoding.favorite.databinding.ItemFavoriteTvShowBinding
 
-class FavoriteTvShowAdapter(val onClick: (TvShow) -> Unit) : BaseAdapter<TvShow, ItemFavoriteTvShowBinding>() {
+class FavoriteTvShowAdapter(
+    val onClick: (TvShow) -> Unit,
+    val removeButton: (Int) -> Unit
+) : BaseAdapter<TvShow, ItemFavoriteTvShowBinding>() {
 
     fun isEmpty() = items.isNullOrEmpty()
 
@@ -36,6 +39,7 @@ class FavoriteTvShowAdapter(val onClick: (TvShow) -> Unit) : BaseAdapter<TvShow,
                 tvShowRating.text = item.rate
                 tvShowTitle.text = item.title
                 tvShowDate.formatDate(item.date)
+                favoriteRemove.setOnClickListener { removeButton(item.id) }
             }
         }
     }

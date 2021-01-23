@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.core.di.FavoriteModuleDependencies
 import com.dicoding.core.base.BaseFragment
-import com.dicoding.core.data.local.models.TvShow
+import com.dicoding.core.ui.CustomDialog
 import com.dicoding.core.utils.observe
 import com.dicoding.detail.data.local.DetailType
 import com.dicoding.detail.ui.DetailActivity
@@ -25,17 +25,26 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var customDialog: CustomDialog
+
     private val viewModel: FavoriteViewModel by viewModels { viewModelFactory }
 
     override val bindingInflater: (LayoutInflater) -> FragmentFavoriteBinding
         get() = FragmentFavoriteBinding::inflate
 
     private val movieAdapter by lazy {
-        FavoriteMovieAdapter { goToDetail(it.id, DetailType.MOVIE) }
+        FavoriteMovieAdapter(
+            { goToDetail(it.id, DetailType.MOVIE) },
+            { viewModel.removeFavorite(it, DetailType.MOVIE) }
+        )
     }
 
     private val tvShowAdapter by lazy {
-        FavoriteTvShowAdapter { goToDetail(it.id, DetailType.TV_SHOW) }
+        FavoriteTvShowAdapter(
+            { goToDetail(it.id, DetailType.TV_SHOW) },
+            { viewModel.removeFavorite(it, DetailType.TV_SHOW) }
+        )
     }
 
     override fun onAttach(context: Context) {
@@ -66,6 +75,9 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
             tvShowAdapter.submitList(it)
             if (binding.tabLayout.selectedTabPosition == 1) onTabTvShowSelected()
         })
+        observe(viewModel.removeMovieEvent, {
+            customDialog.showRemoveFromFavoriteDialog(requireContext())
+        })
     }
 
     override fun initBinding() {
@@ -78,13 +90,13 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = tvShowAdapter
             }
-            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
 
                 override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    when(tab?.position){
+                    when (tab?.position) {
                         0 -> onTabMovieSelected()
                         1 -> onTabTvShowSelected()
                     }
@@ -93,7 +105,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
         }
     }
 
-    private fun onTabMovieSelected(){
+    private fun onTabMovieSelected() {
         binding.apply {
             emptyLayout.visibility = if (movieAdapter.isEmpty()) View.VISIBLE else View.GONE
             recyclerViewMovie.visibility = if (movieAdapter.isEmpty()) View.GONE else View.VISIBLE
@@ -101,7 +113,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
         }
     }
 
-    private fun onTabTvShowSelected(){
+    private fun onTabTvShowSelected() {
         binding.apply {
             emptyLayout.visibility = if (tvShowAdapter.isEmpty()) View.VISIBLE else View.GONE
             recyclerViewTvShow.visibility = if (tvShowAdapter.isEmpty()) View.GONE else View.VISIBLE
@@ -109,7 +121,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
         }
     }
 
-    private fun goToDetail(id: Int, type: DetailType){
+    private fun goToDetail(id: Int, type: DetailType) {
         val detailIntent = Intent(activity, DetailActivity::class.java).apply {
             putExtra(DetailActivity.EXTRA_DETAIL_ID, id)
             putExtra(DetailActivity.EXTRA_DETAIL_TYPE, type)
