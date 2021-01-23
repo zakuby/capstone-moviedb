@@ -1,6 +1,7 @@
 package com.dicoding.capstone
 
 import android.view.LayoutInflater
+import android.view.Menu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -24,9 +25,19 @@ class MainActivity : BaseMainActivity() {
 
     override fun initBinding() {
         binding.apply {
+            setSupportActionBar(toolbar)
+            supportActionBar?.apply {
+                title = getString(R.string.bottom_nav_movie_title)
+                setDisplayHomeAsUpEnabled(false)
+            }
             bottomNavBar.apply {
                 itemIconTintList = null
                 setOnNavigationItemSelectedListener { item ->
+                    supportActionBar?.title = when(item.itemId){
+                        R.id.movies_fragment -> getString(R.string.bottom_nav_movie_title)
+                        R.id.tv_show_fragment -> getString(R.string.bottom_nav_tv_show_title)
+                        else -> getString(R.string.bottom_nav_favorite_title)
+                    }
                     viewpager.setCurrentItem(
                         when (item.itemId) {
                             R.id.movies_fragment -> 0
@@ -42,6 +53,11 @@ class MainActivity : BaseMainActivity() {
                 adapter = pagerAdapter
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_profile, menu)
+        return true
     }
 
     private inner class MainPagerAdapter(

@@ -12,7 +12,7 @@ import com.dicoding.core.di.FavoriteModuleDependencies
 import com.dicoding.core.base.BaseFragment
 import com.dicoding.core.data.local.models.TvShow
 import com.dicoding.core.utils.observe
-import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.data.local.DetailType
 import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.favorite.databinding.FragmentFavoriteBinding
 import com.dicoding.favorite.di.DaggerFavoriteComponent
@@ -58,8 +58,14 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     private fun subscribeUI() {
-        observe(viewModel.movies, movieAdapter::submitList)
-        observe(viewModel.tvShows, tvShowAdapter::submitList)
+        observe(viewModel.movies, {
+            movieAdapter.submitList(it)
+            if (binding.tabLayout.selectedTabPosition == 0) onTabMovieSelected()
+        })
+        observe(viewModel.tvShows, {
+            tvShowAdapter.submitList(it)
+            if (binding.tabLayout.selectedTabPosition == 1) onTabTvShowSelected()
+        })
     }
 
     override fun initBinding() {
@@ -96,7 +102,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     private fun onTabTvShowSelected(){
-        tvShowAdapter.submitList(listOf(TvShow(0, "a", "01-01-1997", "b", "c", "", "")))
         binding.apply {
             emptyLayout.visibility = if (tvShowAdapter.isEmpty()) View.VISIBLE else View.GONE
             recyclerViewTvShow.visibility = if (tvShowAdapter.isEmpty()) View.GONE else View.VISIBLE

@@ -1,6 +1,6 @@
 package com.dicoding.detail.data.remote
 
-import com.dicoding.detail.data.Detail
+import com.dicoding.detail.data.local.Detail
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

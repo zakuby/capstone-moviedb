@@ -1,4 +1,4 @@
-package com.dicoding.detail.data
+package com.dicoding.detail.data.local
 
 import com.dicoding.core.data.local.models.Genre
 import com.google.gson.annotations.SerializedName
@@ -6,18 +6,18 @@ import com.google.gson.annotations.SerializedName
 data class Detail(
     val id: Int,
     @SerializedName(value = "title", alternate = ["name"])
-    val title: String,
+    val title: String?,
     @SerializedName("release_date", alternate = ["first_air_date"])
-    val date: String,
+    val date: String?,
     @SerializedName("overview")
-    val description: String,
+    val description: String?,
     @SerializedName("vote_average")
-    val rate: String,
+    val rate: String?,
     @SerializedName("poster_path")
-    val posterImage: String,
+    val posterImage: String?,
     @SerializedName("backdrop_path")
-    val backgroundImage: String,
-    val isFavorite: String,
+    val backgroundImage: String?,
+    val isFavorite: Boolean = false,
     val genres: List<Genre>? = emptyList()
 )
 

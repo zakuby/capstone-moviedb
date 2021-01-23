@@ -19,7 +19,7 @@ interface MovieDao {
     suspend fun insertAll(movies: List<Movie>)
 
     @Query("SELECT * FROM $TABLE_NAME WHERE id = :id")
-    suspend fun selectById(id: Int): Movie
+    suspend fun selectById(id: Int): Movie?
 
     @Query("SELECT * FROM $TABLE_NAME")
     fun selectAll(): LiveData<List<Movie>>

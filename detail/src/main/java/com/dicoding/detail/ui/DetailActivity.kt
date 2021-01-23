@@ -16,17 +16,19 @@ import com.dicoding.core.data.local.models.Video
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.di.FavoriteModuleDependencies
+import com.dicoding.core.ui.CustomDialog
 import com.dicoding.core.ui.WebViewActivity
 import com.dicoding.core.utils.formatDate
 import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.observe
 import com.dicoding.core.utils.setProgressRating
+import com.dicoding.detail.R
 import com.dicoding.detail.adapter.CastListAdapter
 import com.dicoding.detail.adapter.GenreListAdapter
 import com.dicoding.detail.adapter.ReviewListAdapter
 import com.dicoding.detail.adapter.VideoListAdapter
-import com.dicoding.detail.data.Detail
-import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.data.local.Detail
+import com.dicoding.detail.data.local.DetailType
 import com.dicoding.detail.databinding.ActivityDetailBinding
 import com.dicoding.detail.di.DaggerDetailComponent
 import dagger.hilt.android.EntryPointAccessors
@@ -44,6 +46,9 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var customDialog: CustomDialog
 
     private val viewModel: DetailViewModel by viewModels { viewModelFactory }
 
@@ -112,6 +117,12 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
         observe(viewModel.detail, this::renderDetail)
         observe(viewModel.videos, this::renderMovieVideos)
         observe(viewModel.reviews, reviewAdapter::submitList)
+        observe(viewModel.isFavored, { isFavored ->
+            binding.favoriteButtonFab.setImageResource(
+                if (isFavored) R.drawable.ic_favorite_remove_fab
+                else R.drawable.ic_favorite_fab
+            )
+        })
         observe(viewModel.resultReviews, { resultPaging ->
             when (resultPaging) {
                 is ResultPaging.Loading -> {
@@ -125,7 +136,14 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
                 is ResultPaging.Empty -> binding.containerReview.isGone = resultPaging.isEmpty
                 is ResultPaging.Error -> binding.containerReview.isGone = true
             }
-
+        })
+        observe(viewModel.onFavoredEvent, { isFavored ->
+            binding.favoriteButtonFab.setImageResource(
+                if (isFavored) R.drawable.ic_favorite_remove_fab
+                else R.drawable.ic_favorite_fab
+            )
+            if (isFavored) customDialog.showRemoveFromFavoriteDialog(this)
+            else customDialog.showAddToFavoriteDialog(this)
         })
     }
 
@@ -166,6 +184,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
             detailDate.formatDate(detail.date)
             detailOverviewDesc.text = detail.description
             genreAdapter.submitList(detail.genres ?: emptyList())
+            favoriteButtonFab.setOnClickListener { viewModel.favorDetail(detail) }
         }
     }
 

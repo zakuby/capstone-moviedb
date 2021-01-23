@@ -1,7 +1,7 @@
 package com.dicoding.detail.data.remote
 
 import com.dicoding.core.data.remote.ApiCallHelper
-import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.data.local.DetailType
 import javax.inject.Inject
 
 class DetailRemoteDataSource @Inject constructor(

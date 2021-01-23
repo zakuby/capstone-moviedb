@@ -7,9 +7,12 @@ import com.dicoding.core.data.local.models.Review
 import com.dicoding.core.data.local.models.Video
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.detail.data.Detail
+import com.dicoding.core.utils.SingleLiveEvent
+import com.dicoding.detail.data.local.Detail
 import com.dicoding.detail.data.DetailRepository
-import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.data.local.DetailType
+import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
@@ -22,10 +25,13 @@ class DetailViewModel @Inject constructor(
 
     val resultReviews = MutableLiveData<ResultPaging>()
 
+    val onFavoredEvent = MutableLiveData<Boolean>()
+
     fun setDetail(id: Int, type: DetailType){
         detailId = id
         detailType = type
-        reviews = repository.getReviews(viewModelScope, detailId, detailType, resultReviews)
+        _reviews = repository.getReviews(viewModelScope, detailId, detailType, resultReviews)
+        loadFavorite()
     }
 
     val detail: LiveData<Result<Detail>> = liveData(viewModelScope.coroutineContext){
@@ -62,5 +68,25 @@ class DetailViewModel @Inject constructor(
         emit(Result.Loading(false))
     }
 
-    lateinit var reviews: LiveData<PagedList<Review>>
+
+    private lateinit var _reviews: LiveData<PagedList<Review>>
+    val reviews get() = _reviews
+
+    private val _isFavored = MutableLiveData<Boolean>()
+    val isFavored: LiveData<Boolean> get() = _isFavored
+
+    private fun loadFavorite() = viewModelScope.launch {
+        _isFavored.postValue(repository.getDetailFavored(detailId, detailType))
+    }
+
+    fun favorDetail(detail: Detail) = viewModelScope.launch {
+        try{
+            val isFavored = isFavored.value ?: false
+            repository.favorDetail(detail.copy(isFavorite = isFavored), detailType)
+            onFavoredEvent.postValue(isFavored)
+            _isFavored.postValue(!isFavored)
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
 }

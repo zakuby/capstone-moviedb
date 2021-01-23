@@ -5,7 +5,7 @@ import androidx.paging.PageKeyedDataSource
 import com.dicoding.core.data.local.models.Review
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.data.local.DetailType
 import com.dicoding.detail.data.remote.DetailRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

@@ -80,6 +80,7 @@ dependencies {
     implementation deps.others.picasso
     implementation deps.others.circleimage
     implementation deps.others.shimmer
+    implementation deps.others.lottie
 
     androidTestImplementation deps.test.espresso_core
     androidTestImplementation deps.test.espresso_contrib

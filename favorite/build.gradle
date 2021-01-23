@@ -36,6 +36,4 @@ dependencies {
     implementation project(":app")
     implementation project(":core")
     implementation project(":detail")
-
-    implementation deps.others.lottie
 }

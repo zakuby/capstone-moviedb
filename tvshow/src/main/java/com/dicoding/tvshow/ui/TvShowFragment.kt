@@ -14,7 +14,7 @@ import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart
 import com.dicoding.core.utils.observe
-import com.dicoding.detail.data.DetailType
+import com.dicoding.detail.data.local.DetailType
 import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.tvshow.R
 import com.dicoding.tvshow.databinding.FragmentTvShowBinding
