@@ -22,7 +22,7 @@ class TvShowPageDataSource constructor(
         callback: LoadInitialCallback<Int, TvShow>
     ) {
         resultPaging.postValue(ResultPaging.Loading(true))
-        fetchMovies {
+        fetchTvShows {
             resultPaging.postValue(ResultPaging.Empty(it.isNullOrEmpty()))
             resultPaging.postValue(ResultPaging.Loading(false))
             callback.onResult(it, null, 2)
@@ -30,10 +30,10 @@ class TvShowPageDataSource constructor(
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, TvShow>) {
-        fetchMovies(params.key) { callback.onResult(it, params.key + 1) }
+        fetchTvShows(params.key) { callback.onResult(it, params.key + 1) }
     }
 
-    private fun fetchMovies(page: Int = 1, callback: (List<TvShow>) -> Unit) {
+    private fun fetchTvShows(page: Int = 1, callback: (List<TvShow>) -> Unit) {
         scope.launch {
             when (val result = dataSource.getTvShows(page, keywords)) {
                 is Success -> result.data.results?.let { callback(it) }

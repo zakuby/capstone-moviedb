@@ -8,8 +8,6 @@ import retrofit2.http.Query
 
 interface TvShowServices {
 
-    @GET("tv/{tv_id}")
-    suspend fun getTvShowDetail(@Path("tv_id") tvId: Int): Response<TvShow>
 
     @GET("tv/top_rated")
     suspend fun getTopRatedTvShows(

@@ -1,7 +1,7 @@
-package com.dicoding.core.data.remote.response
+package com.dicoding.detail.data.remote
 
 import com.dicoding.core.data.local.models.Video
 
-data class DetailVideoResponse(
+data class VideosResponse(
     val results: List<Video>?
 )

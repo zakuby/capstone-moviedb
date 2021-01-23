@@ -35,6 +35,5 @@ android {
 dependencies {
     implementation project(":app")
     implementation project(":core")
-
-    implementation deps.others.lottie
+    implementation project(":detail")
 }

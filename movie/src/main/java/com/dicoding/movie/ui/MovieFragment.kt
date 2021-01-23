@@ -1,5 +1,6 @@
 package com.dicoding.movie.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart
 import com.dicoding.core.utils.observe
+import com.dicoding.detail.data.local.DetailType
+import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.movie.R
 import com.dicoding.movie.databinding.FragmentMovieBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,7 +33,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
 
     private val viewModel: MovieViewModel by viewModels()
 
-    private val adapterMovie by lazy { MovieAdapter { movie -> println(movie) } }
+    private val adapterMovie by lazy { MovieAdapter { movie -> gotoDetailMovie(movie.id) } }
     private val adapterGenre by lazy { GenreAdapter() }
 
     override fun initBinding() {
@@ -86,6 +89,14 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
                 }
             }
         })
+    }
+
+    private fun gotoDetailMovie(id: Int){
+        val detailIntent = Intent(activity, DetailActivity::class.java).apply {
+            putExtra(DetailActivity.EXTRA_DETAIL_ID, id)
+            putExtra(DetailActivity.EXTRA_DETAIL_TYPE, DetailType.MOVIE)
+        }
+        startActivity(detailIntent)
     }
 
     private fun retryLoadMovie() = viewModel.searchMovies("")

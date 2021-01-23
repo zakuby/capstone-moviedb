@@ -60,9 +60,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold"
-                tools:text="8.6" />
+                tools:text="8.6"
+                tools:ignore="SmallSp" />
 
         </FrameLayout>
 

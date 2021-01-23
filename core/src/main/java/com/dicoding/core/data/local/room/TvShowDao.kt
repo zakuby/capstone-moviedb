@@ -19,7 +19,7 @@ interface TvShowDao {
     suspend fun insertAll(tvShow: List<TvShow>)
 
     @Query("SELECT * FROM $TABLE_NAME WHERE id = :id")
-    suspend fun selectById(id: Int): TvShow
+    suspend fun selectById(id: Int): TvShow?
 
     @Query("SELECT * FROM $TABLE_NAME")
     fun selectAll(): LiveData<List<TvShow>>
