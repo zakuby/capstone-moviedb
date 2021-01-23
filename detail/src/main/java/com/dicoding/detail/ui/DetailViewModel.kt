@@ -1,12 +1,12 @@
 package com.dicoding.detail.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.paging.PagedList
 import com.dicoding.core.data.local.models.Cast
+import com.dicoding.core.data.local.models.Review
 import com.dicoding.core.data.local.models.Video
 import com.dicoding.core.data.remote.response.Result
+import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.detail.data.Detail
 import com.dicoding.detail.data.DetailRepository
 import com.dicoding.detail.data.DetailType
@@ -20,9 +20,12 @@ class DetailViewModel @Inject constructor(
 
     private var detailType: DetailType = DetailType.MOVIE
 
+    val resultReviews = MutableLiveData<ResultPaging>()
+
     fun setDetail(id: Int, type: DetailType){
         detailId = id
         detailType = type
+        reviews = repository.getReviews(viewModelScope, detailId, detailType, resultReviews)
     }
 
     val detail: LiveData<Result<Detail>> = liveData(viewModelScope.coroutineContext){
@@ -58,4 +61,6 @@ class DetailViewModel @Inject constructor(
         }
         emit(Result.Loading(false))
     }
+
+    lateinit var reviews: LiveData<PagedList<Review>>
 }

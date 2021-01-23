@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +14,7 @@ import com.dicoding.core.data.local.models.Cast
 import com.dicoding.core.data.local.models.Review
 import com.dicoding.core.data.local.models.Video
 import com.dicoding.core.data.remote.response.Result
+import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.di.FavoriteModuleDependencies
 import com.dicoding.core.ui.WebViewActivity
 import com.dicoding.core.utils.formatDate
@@ -37,7 +37,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
     override val bindingInflater: (LayoutInflater) -> ActivityDetailBinding
         get() = ActivityDetailBinding::inflate
 
-    companion object{
+    companion object {
         const val EXTRA_DETAIL_ID = "detailId"
         const val EXTRA_DETAIL_TYPE = "detailType"
     }
@@ -45,7 +45,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel: DetailViewModel by viewModels{ viewModelFactory }
+    private val viewModel: DetailViewModel by viewModels { viewModelFactory }
 
     private val castAdapter by lazy { CastListAdapter() }
 
@@ -111,18 +111,24 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
         observe(viewModel.casts, this::renderCasts)
         observe(viewModel.detail, this::renderDetail)
         observe(viewModel.videos, this::renderMovieVideos)
-//        observe(viewModel.reviews, reviewAdapter::submitList)
-//        observe(viewModel.initialReviewEmpty, { isError ->
-//            binding.containerReview.isGone = isError
-//        })
-//        observe(viewModel.initialReviewLoading, { isLoading ->
-//            binding.shimmerViewReview.apply {
-//                isGone = !isLoading
-//                if (isLoading) startShimmer() else stopShimmer()
-//            }
-//            binding.reviewView.isGone = isLoading
-//        })
+        observe(viewModel.reviews, reviewAdapter::submitList)
+        observe(viewModel.resultReviews, { resultPaging ->
+            when (resultPaging) {
+                is ResultPaging.Loading -> {
+                    val isLoading = resultPaging.isLoading
+                    binding.shimmerViewReview.apply {
+                        isGone = !isLoading
+                        if (isLoading) startShimmer() else stopShimmer()
+                    }
+                    binding.reviewView.isGone = isLoading
+                }
+                is ResultPaging.Empty -> binding.containerReview.isGone = resultPaging.isEmpty
+                is ResultPaging.Error -> binding.containerReview.isGone = true
+            }
+
+        })
     }
+
     private fun renderCasts(result: Result<List<Cast>>) {
         when (result) {
             is Result.Success -> castAdapter.submitList(result.data)
@@ -150,7 +156,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
         }
     }
 
-    private fun bindDetail(detail: Detail){
+    private fun bindDetail(detail: Detail) {
         binding.apply {
             toolbarImage.loadImageUrl(detail.backgroundImage)
             posterImage.loadImageUrl(detail.posterImage)
