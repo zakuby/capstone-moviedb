@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.dicoding.core.base.BaseAdapter
 import com.dicoding.core.base.BaseViewHolder
 import com.dicoding.core.data.local.models.TvShow
+import com.dicoding.core.utils.formatDate
 import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.setProgressRating
 import com.dicoding.favorite.databinding.ItemFavoriteTvShowBinding
@@ -34,7 +35,7 @@ class FavoriteTvShowAdapter(val onClick: (TvShow) -> Unit) : BaseAdapter<TvShow,
                 progressBarRating.setProgressRating(item.rate)
                 tvShowRating.text = item.rate
                 tvShowTitle.text = item.title
-                tvShowDate.text = item.date
+                tvShowDate.formatDate(item.date)
             }
         }
     }
