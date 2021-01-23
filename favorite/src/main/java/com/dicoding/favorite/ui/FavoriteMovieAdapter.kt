@@ -5,11 +5,15 @@ import android.view.ViewGroup
 import com.dicoding.core.base.BaseAdapter
 import com.dicoding.core.base.BaseViewHolder
 import com.dicoding.core.data.local.models.Movie
+import com.dicoding.core.utils.formatDate
 import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.setProgressRating
 import com.dicoding.favorite.databinding.ItemFavoriteMovieBinding
 
-class FavoriteMovieAdapter(val onClick: (Movie) -> Unit) : BaseAdapter<Movie, ItemFavoriteMovieBinding>() {
+class FavoriteMovieAdapter(
+    val onClick: (Movie) -> Unit,
+    val removeButton: (Int) -> Unit
+) : BaseAdapter<Movie, ItemFavoriteMovieBinding>() {
 
     fun isEmpty() = items.isNullOrEmpty()
 
@@ -34,7 +38,8 @@ class FavoriteMovieAdapter(val onClick: (Movie) -> Unit) : BaseAdapter<Movie, It
                 progressBarRating.setProgressRating(item.rate)
                 movieRating.text = item.rate
                 movieTitle.text = item.title
-                movieDate.text = item.date
+                movieDate.formatDate(item.date)
+                favoriteRemove.setOnClickListener { removeButton(item.id) }
             }
         }
     }
