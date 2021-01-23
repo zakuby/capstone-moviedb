@@ -21,7 +21,6 @@
             android:background="@color/white"
             app:contentInsetStartWithNavigation="0dp"
             app:layout_collapseMode="pin"
-            app:menu="@menu/menu_profile"
             app:navigationIcon="@drawable/ic_close_black"
             app:titleTextColor="@color/black"
             app:subtitleTextColor="@color/black"

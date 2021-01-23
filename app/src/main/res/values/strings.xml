@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Capstone MovieDb</string>
+    <string name="author_name" translatable="false">Muhammad Yaqub</string>
+    <string name="author_email" translatable="false">zakuby@gmail.com</string>
+    <string name="author_phone" translatable="false">+6282321420659</string>
 </resources>

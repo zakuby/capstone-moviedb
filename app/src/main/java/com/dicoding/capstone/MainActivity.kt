@@ -2,6 +2,7 @@ package com.dicoding.capstone
 
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -9,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dicoding.capstone.databinding.ActivityMainBinding
 import com.dicoding.core.base.BaseActivity
+import com.dicoding.core.utils.startActivity
 import com.dicoding.movie.ui.MovieFragment
 import com.dicoding.tvshow.ui.TvShowFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +24,16 @@ class MainActivity : BaseMainActivity() {
         get() = ActivityMainBinding::inflate
 
     private val pagerAdapter by lazy { MainPagerAdapter(supportFragmentManager, lifecycle) }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(SettingsActivity::class.java)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun initBinding() {
         binding.apply {
@@ -56,7 +68,7 @@ class MainActivity : BaseMainActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_profile, menu)
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
         return true
     }
 
