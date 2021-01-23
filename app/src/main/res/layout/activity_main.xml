@@ -22,7 +22,7 @@
             app:contentInsetStartWithNavigation="0dp"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:menu="@menu/menu_profile"
+            app:menu="@menu/menu_toolbar"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:popupTheme="@style/ToolBarTheme"
             app:titleTextColor="@color/black"
