@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     dependencies = [FavoriteModuleDependencies::class],
-    modules = [ViewModelModule::class]
+    modules = [ViewModelModule::class, FavoriteModule::class]
 )
 interface FavoriteComponent {
 

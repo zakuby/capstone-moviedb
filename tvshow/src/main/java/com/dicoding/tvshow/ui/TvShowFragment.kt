@@ -68,10 +68,15 @@ class TvShowFragment : BaseFragment<FragmentTvShowBinding>() {
                 is ResultPaging.Empty -> {
                     binding.apply {
                         errorLayout.errorView.isGone(!result.isEmpty)
+                        errorLayout.message.text = "Data is empty"
                         container.isGone(result.isEmpty)
                     }
                 }
-                is ResultPaging.Error -> binding.errorLayout.message.text = result.error.message
+                is ResultPaging.Error -> binding.apply {
+                    container.isGone(true)
+                    errorLayout.errorView.isGone(false)
+                    errorLayout.message.text = result.error.message
+                }
                 is ResultPaging.Loading -> {
                     binding.apply {
                         shimmerView.isShimmerStart(result.isLoading)

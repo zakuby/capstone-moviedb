@@ -12,27 +12,27 @@ import com.dicoding.core.utils.setProgressRating
 import com.dicoding.favorite.databinding.ItemFavoriteTvShowBinding
 
 class FavoriteTvShowAdapter(
-    val onClick: (TvShowEntity) -> Unit,
+    val onClick: (TvShow) -> Unit,
     val removeButton: (Int) -> Unit
-) : BaseAdapter<TvShowEntity, ItemFavoriteTvShowBinding>() {
+) : BaseAdapter<TvShow, ItemFavoriteTvShowBinding>() {
 
     fun isEmpty() = items.isNullOrEmpty()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<TvShowEntity, ItemFavoriteTvShowBinding> {
+    ): BaseViewHolder<TvShow, ItemFavoriteTvShowBinding> {
         val binding = ItemFavoriteTvShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: BaseViewHolder<TvShowEntity, ItemFavoriteTvShowBinding>,
+        holder: BaseViewHolder<TvShow, ItemFavoriteTvShowBinding>,
         position: Int
     ) = holder.bind(getItem(position))
 
-    inner class ViewHolder(binding: ItemFavoriteTvShowBinding) : BaseViewHolder<TvShowEntity, ItemFavoriteTvShowBinding>(binding) {
-        override fun bind(item: TvShowEntity) {
+    inner class ViewHolder(binding: ItemFavoriteTvShowBinding) : BaseViewHolder<TvShow, ItemFavoriteTvShowBinding>(binding) {
+        override fun bind(item: TvShow) {
             binding.apply {
                 itemView.setOnClickListener { onClick(item) }
                 tvShowImage.loadImageUrl(item.posterImage)

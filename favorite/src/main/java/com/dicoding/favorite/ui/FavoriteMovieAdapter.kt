@@ -12,27 +12,27 @@ import com.dicoding.core.utils.setProgressRating
 import com.dicoding.favorite.databinding.ItemFavoriteMovieBinding
 
 class FavoriteMovieAdapter(
-    val onClick: (MovieEntity) -> Unit,
+    val onClick: (Movie) -> Unit,
     val removeButton: (Int) -> Unit
-) : BaseAdapter<MovieEntity, ItemFavoriteMovieBinding>() {
+) : BaseAdapter<Movie, ItemFavoriteMovieBinding>() {
 
     fun isEmpty() = items.isNullOrEmpty()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<MovieEntity, ItemFavoriteMovieBinding> {
+    ): BaseViewHolder<Movie, ItemFavoriteMovieBinding> {
         val binding = ItemFavoriteMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: BaseViewHolder<MovieEntity, ItemFavoriteMovieBinding>,
+        holder: BaseViewHolder<Movie, ItemFavoriteMovieBinding>,
         position: Int
     ) = holder.bind(getItem(position))
 
-    inner class ViewHolder(binding: ItemFavoriteMovieBinding) : BaseViewHolder<MovieEntity, ItemFavoriteMovieBinding>(binding) {
-        override fun bind(item: MovieEntity) {
+    inner class ViewHolder(binding: ItemFavoriteMovieBinding) : BaseViewHolder<Movie, ItemFavoriteMovieBinding>(binding) {
+        override fun bind(item: Movie) {
             binding.apply {
                 itemView.setOnClickListener { onClick(item) }
                 movieImage.loadImageUrl(item.posterImage)

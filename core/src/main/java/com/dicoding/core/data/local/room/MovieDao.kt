@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.dicoding.core.data.local.models.MovieEntity
 import com.dicoding.core.data.local.models.MovieEntity.Companion.TABLE_NAME
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
@@ -22,7 +23,7 @@ interface MovieDao {
     suspend fun selectById(id: Int): MovieEntity?
 
     @Query("SELECT * FROM $TABLE_NAME")
-    fun selectAll(): LiveData<List<MovieEntity>>
+    fun selectAll(): Flow<List<MovieEntity>>
 
     @Update
     suspend fun update(movie: MovieEntity)

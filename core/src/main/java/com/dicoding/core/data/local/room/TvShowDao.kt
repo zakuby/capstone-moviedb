@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.dicoding.core.data.local.models.TvShowEntity
 import com.dicoding.core.data.local.models.TvShowEntity.Companion.TABLE_NAME
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TvShowDao {
@@ -15,14 +16,11 @@ interface TvShowDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(tvShow: TvShowEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(tvShow: List<TvShowEntity>)
-
     @Query("SELECT * FROM $TABLE_NAME WHERE id = :id")
     suspend fun selectById(id: Int): TvShowEntity?
 
     @Query("SELECT * FROM $TABLE_NAME")
-    fun selectAll(): LiveData<List<TvShowEntity>>
+    fun selectAll(): Flow<List<TvShowEntity>>
 
     @Update
     suspend fun update(tvShow: TvShowEntity)

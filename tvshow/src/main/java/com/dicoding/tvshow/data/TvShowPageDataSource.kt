@@ -23,8 +23,8 @@ class TvShowPageDataSource constructor(
     ) {
         resultPaging.postValue(ResultPaging.Loading(true))
         fetchTvShows {
-            resultPaging.postValue(ResultPaging.Empty(it.isNullOrEmpty()))
             resultPaging.postValue(ResultPaging.Loading(false))
+            resultPaging.value = ResultPaging.Empty(it.isNullOrEmpty())
             callback.onResult(it, null, 2)
         }
     }
@@ -57,9 +57,9 @@ class TvShowPageDataSource constructor(
                     }
                 }
                 is Error -> {
-                    resultPaging.postValue(ResultPaging.Error(resp.error))
-                    resultPaging.postValue(ResultPaging.Empty(true))
-                    resultPaging.postValue(ResultPaging.Loading(false))
+                    resultPaging.value = ResultPaging.Error(resp.error)
+                    resultPaging.value = ResultPaging.Empty(true)
+                    resultPaging.value = ResultPaging.Loading(false)
                 }
             }
         }
