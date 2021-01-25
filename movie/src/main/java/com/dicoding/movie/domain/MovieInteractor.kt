@@ -8,13 +8,13 @@ import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.domain.model.Genre
 import com.dicoding.core.domain.model.Movie
 import com.dicoding.movie.data.repository.MovieRepository
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
 class MovieInteractor @Inject constructor(
     private val repository: MovieRepository
-): MovieUseCase {
+) : MovieUseCase {
     override fun getMovies(
         scope: CoroutineScope,
         genres: String?,

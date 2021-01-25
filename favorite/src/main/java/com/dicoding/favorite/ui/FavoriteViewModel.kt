@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.dicoding.core.domain.model.DetailType
 import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.utils.SingleLiveEvent
-import com.dicoding.core.domain.model.DetailType
 import com.dicoding.favorite.domain.FavoriteUseCase
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 class FavoriteViewModel @Inject constructor(
     private val useCase: FavoriteUseCase

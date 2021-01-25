@@ -10,12 +10,14 @@ import androidx.core.view.isGone
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.core.base.BaseActivity
-import com.dicoding.core.domain.model.Cast
-import com.dicoding.core.domain.model.Review
-import com.dicoding.core.domain.model.Video
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.di.FavoriteModuleDependencies
+import com.dicoding.core.domain.model.Cast
+import com.dicoding.core.domain.model.Detail
+import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.Review
+import com.dicoding.core.domain.model.Video
 import com.dicoding.core.ui.CustomDialog
 import com.dicoding.core.ui.WebViewActivity
 import com.dicoding.core.utils.formatDate
@@ -27,8 +29,6 @@ import com.dicoding.detail.adapter.CastListAdapter
 import com.dicoding.detail.adapter.GenreListAdapter
 import com.dicoding.detail.adapter.ReviewListAdapter
 import com.dicoding.detail.adapter.VideoListAdapter
-import com.dicoding.core.domain.model.Detail
-import com.dicoding.core.domain.model.DetailType
 import com.dicoding.detail.databinding.ActivityDetailBinding
 import com.dicoding.detail.di.DaggerDetailComponent
 import dagger.hilt.android.EntryPointAccessors

@@ -25,7 +25,7 @@ class DetailLocalDataSource @Inject constructor(
         else insertDetail(detail, type)
     }
 
-    private suspend fun insertDetail(detail: Detail, type: DetailType){
+    private suspend fun insertDetail(detail: Detail, type: DetailType) {
         if (type == DetailType.MOVIE) {
             movieDao.insert(
                 MovieEntity(
@@ -55,7 +55,7 @@ class DetailLocalDataSource @Inject constructor(
         }
     }
 
-    private suspend fun removeDetail(id: Int, type: DetailType){
+    private suspend fun removeDetail(id: Int, type: DetailType) {
         if (type == DetailType.MOVIE)
             movieDao.deleteById(id)
         else

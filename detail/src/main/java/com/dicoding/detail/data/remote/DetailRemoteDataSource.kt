@@ -8,7 +8,7 @@ import javax.inject.Singleton
 @Singleton
 class DetailRemoteDataSource @Inject constructor(
     private val services: DetailServices
-) : BaseRemoteDataSource(){
+) : BaseRemoteDataSource() {
 
     fun getDetail(id: Int, type: DetailType) = getFlowResult {
         if (type == DetailType.MOVIE) services.getMovieDetail(id) else services.getTvShowDetail(id)
@@ -25,5 +25,4 @@ class DetailRemoteDataSource @Inject constructor(
     suspend fun getDetailReviews(id: Int, type: DetailType, page: Int) = getResult {
         if (type == DetailType.MOVIE) services.getMovieReviews(id, page) else services.getTvShowReviews(id, page)
     }
-
 }

@@ -14,7 +14,6 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivitySettingsBinding
         get() = ActivitySettingsBinding::inflate
 
-
     override fun initBinding() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = getString(R.string.title_settings)

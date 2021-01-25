@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.core.base.BaseFragment
 import com.dicoding.core.data.remote.response.Result
-import com.dicoding.core.domain.model.FilterType
 import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.FilterType
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart
 import com.dicoding.core.utils.observe
-import com.dicoding.core.domain.model.DetailType
 import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.movie.R
 import com.dicoding.movie.databinding.FragmentMovieBinding
@@ -72,10 +72,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
     private fun subscribeUI() {
         observe(viewModel.movies, adapterMovie::submitList)
         observe(viewModel.genres, { result ->
-            if (result is Result.Success){
+            if (result is Result.Success) {
                 binding.btnFilter.isGone(false)
                 adapterGenre.submitList(result.data)
-            } else if (result is Result.Error){
+            } else if (result is Result.Error) {
                 binding.btnFilter.isGone(true)
             }
         })
@@ -104,7 +104,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
         })
     }
 
-    private fun gotoDetailMovie(id: Int){
+    private fun gotoDetailMovie(id: Int) {
         val detailIntent = Intent(activity, DetailActivity::class.java).apply {
             putExtra(DetailActivity.EXTRA_DETAIL_ID, id)
             putExtra(DetailActivity.EXTRA_DETAIL_TYPE, DetailType.MOVIE)

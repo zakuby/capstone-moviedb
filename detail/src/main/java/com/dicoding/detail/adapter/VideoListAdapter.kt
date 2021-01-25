@@ -18,7 +18,7 @@ class VideoListAdapter(val onClick: (String) -> Unit) : BaseAdapter<Video, ItemV
         return ViewHolder(binding)
     }
 
-    inner class ViewHolder(binding: ItemVideoBinding) : BaseViewHolder<Video, ItemVideoBinding>(binding){
+    inner class ViewHolder(binding: ItemVideoBinding) : BaseViewHolder<Video, ItemVideoBinding>(binding) {
         override fun bind(item: Video) {
             binding.apply {
                 videoImage.loadImageUrl(item.youtubeThumbnail, false)
@@ -26,6 +26,5 @@ class VideoListAdapter(val onClick: (String) -> Unit) : BaseAdapter<Video, ItemV
                 videoName.text = item.name
             }
         }
-
     }
 }

@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
-import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.domain.model.Movie
 import com.dicoding.movie.data.remote.MovieRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 
@@ -37,7 +37,6 @@ class MoviePageDataSourceFactory(
             .setPageSize(10)
             .setEnablePlaceholders(false)
             .build()
-
 
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
             override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {

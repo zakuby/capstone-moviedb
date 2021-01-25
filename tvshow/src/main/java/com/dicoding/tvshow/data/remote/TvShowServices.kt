@@ -6,7 +6,6 @@ import retrofit2.http.Query
 
 interface TvShowServices {
 
-
     @GET("tv/top_rated")
     suspend fun getTopRatedTvShows(
         @Query("language") lang: String = "en-US",

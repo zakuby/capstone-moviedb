@@ -20,7 +20,7 @@ class ReviewListAdapter(
         return ViewHolder(binding)
     }
 
-    inner class ViewHolder(binding: ItemReviewBinding) : BaseViewHolder<Review, ItemReviewBinding>(binding){
+    inner class ViewHolder(binding: ItemReviewBinding) : BaseViewHolder<Review, ItemReviewBinding>(binding) {
         override fun bind(item: Review) {
             binding.apply {
                 itemView.setOnClickListener { onClick(item) }
@@ -28,7 +28,6 @@ class ReviewListAdapter(
                 reviewContent.text = item.content
             }
         }
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

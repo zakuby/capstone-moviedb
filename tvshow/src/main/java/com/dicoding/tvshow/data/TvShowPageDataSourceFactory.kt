@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
-import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.domain.model.TvShow
 import com.dicoding.tvshow.data.remote.TvShowRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 

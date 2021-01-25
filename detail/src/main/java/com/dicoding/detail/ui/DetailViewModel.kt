@@ -1,19 +1,22 @@
 package com.dicoding.detail.ui
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
-import com.dicoding.core.domain.model.Cast
-import com.dicoding.core.domain.model.Review
-import com.dicoding.core.domain.model.Video
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.domain.model.Cast
 import com.dicoding.core.domain.model.Detail
-import com.dicoding.detail.data.repository.DetailRepositoryImpl
 import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.Review
+import com.dicoding.core.domain.model.Video
 import com.dicoding.detail.domain.DetailUseCase
-import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 class DetailViewModel @Inject constructor(
     private val useCase: DetailUseCase
@@ -27,7 +30,7 @@ class DetailViewModel @Inject constructor(
 
     val onFavoredEvent = MutableLiveData<Boolean>()
 
-    fun setDetail(id: Int, type: DetailType){
+    fun setDetail(id: Int, type: DetailType) {
         detailId = id
         detailType = type
         _reviews = useCase.getReviews(viewModelScope, detailId, detailType, resultReviews)
@@ -37,7 +40,6 @@ class DetailViewModel @Inject constructor(
     val detail: LiveData<Result<Detail>> by lazy { useCase.getDetail(detailId, detailType).asLiveData(viewModelScope.coroutineContext) }
     val casts: LiveData<Result<List<Cast>>> by lazy { useCase.getDetailCasts(detailId, detailType).asLiveData(viewModelScope.coroutineContext) }
     val videos: LiveData<Result<List<Video>>> by lazy { useCase.getDetailVideos(detailId, detailType).asLiveData(viewModelScope.coroutineContext) }
-
 
     private lateinit var _reviews: LiveData<PagedList<Review>>
     val reviews get() = _reviews
@@ -50,12 +52,12 @@ class DetailViewModel @Inject constructor(
     }
 
     fun favorDetail(detail: Detail) = viewModelScope.launch {
-        try{
+        try {
             val isFavored = isFavored.value ?: false
             useCase.favorDetail(detail.copy(isFavorite = isFavored), detailType)
             onFavoredEvent.postValue(isFavored)
             _isFavored.postValue(!isFavored)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

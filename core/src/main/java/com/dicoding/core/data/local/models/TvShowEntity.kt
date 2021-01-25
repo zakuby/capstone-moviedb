@@ -6,7 +6,6 @@ import androidx.room.TypeConverters
 import com.dicoding.core.data.local.models.TvShowEntity.Companion.TABLE_NAME
 import com.dicoding.core.domain.model.Genre
 
-
 @Entity(tableName = TABLE_NAME)
 @TypeConverters(GenreConverter::class)
 data class TvShowEntity(

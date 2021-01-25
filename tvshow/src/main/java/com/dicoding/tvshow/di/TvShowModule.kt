@@ -16,7 +16,6 @@ abstract class TvShowModule {
     @Binds
     abstract fun provideRepository(tvShowRepository: TvShowRepositoryImpl): TvShowRepository
 
-
     @Binds
     abstract fun provideUseCase(tvShowInteractor: TvShowInteractor): TvShowUseCase
 }

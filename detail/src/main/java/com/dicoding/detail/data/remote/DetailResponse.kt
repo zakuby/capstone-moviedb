@@ -20,4 +20,3 @@ data class DetailResponse(
     val isFavorite: Boolean = false,
     val genres: List<Genre>? = emptyList()
 )
-

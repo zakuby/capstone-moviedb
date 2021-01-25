@@ -19,7 +19,7 @@ data class MovieEntity(
     val backgroundImage: String?,
     var isFavorite: Boolean = false,
     val genres: List<Genre>? = emptyList()
-){
+) {
     companion object {
         const val TABLE_NAME = "movie"
     }

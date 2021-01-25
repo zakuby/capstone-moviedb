@@ -7,10 +7,9 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
+import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.domain.model.FilterType
 import com.dicoding.core.domain.model.TvShow
-import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.tvshow.data.repository.TvShowRepositoryImpl
 import com.dicoding.tvshow.domain.TvShowUseCase
 
 class TvShowViewModel @ViewModelInject constructor(

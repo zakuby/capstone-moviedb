@@ -1,9 +1,7 @@
 package com.dicoding.favorite.di
 
 import androidx.lifecycle.ViewModel
-import androidx.work.ListenableWorker
 import dagger.MapKey
-import javax.inject.Scope
 import kotlin.reflect.KClass
 
 @Retention(AnnotationRetention.RUNTIME)

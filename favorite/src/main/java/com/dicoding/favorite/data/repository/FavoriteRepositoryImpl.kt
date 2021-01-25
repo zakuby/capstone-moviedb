@@ -3,9 +3,8 @@ package com.dicoding.favorite.data.repository
 import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.domain.model.TvShow
 import com.dicoding.favorite.data.local.FavoriteLocalDataSource
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-import javax.inject.Singleton
+import kotlinx.coroutines.flow.map
 
 class FavoriteRepositoryImpl @Inject constructor(
     private val localDataSource: FavoriteLocalDataSource

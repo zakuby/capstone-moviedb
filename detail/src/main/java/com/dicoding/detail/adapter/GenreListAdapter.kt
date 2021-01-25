@@ -17,10 +17,9 @@ class GenreListAdapter : BaseAdapter<Genre, ItemGenreBinding>() {
         return ViewHolder(binding)
     }
 
-    inner class ViewHolder(binding: ItemGenreBinding) : BaseViewHolder<Genre, ItemGenreBinding>(binding){
+    inner class ViewHolder(binding: ItemGenreBinding) : BaseViewHolder<Genre, ItemGenreBinding>(binding) {
         override fun bind(item: Genre) {
             binding.genreName.text = item.name
         }
-
     }
 }

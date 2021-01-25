@@ -8,11 +8,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.core.di.FavoriteModuleDependencies
 import com.dicoding.core.base.BaseFragment
+import com.dicoding.core.di.FavoriteModuleDependencies
+import com.dicoding.core.domain.model.DetailType
 import com.dicoding.core.ui.CustomDialog
 import com.dicoding.core.utils.observe
-import com.dicoding.core.domain.model.DetailType
 import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.favorite.databinding.FragmentFavoriteBinding
 import com.dicoding.favorite.di.DaggerFavoriteComponent

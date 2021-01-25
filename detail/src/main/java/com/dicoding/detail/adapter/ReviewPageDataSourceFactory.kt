@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
-import com.dicoding.core.domain.model.Review
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.Review
 import com.dicoding.detail.data.remote.DetailRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 

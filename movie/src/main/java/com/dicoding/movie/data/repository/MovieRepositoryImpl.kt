@@ -5,20 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.dicoding.core.data.remote.response.Result
-import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.domain.model.Genre
+import com.dicoding.core.domain.model.Movie
 import com.dicoding.movie.data.MoviePageDataSourceFactory
 import com.dicoding.movie.data.remote.MovieRemoteDataSource
 import javax.inject.Inject
-import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class MovieRepositoryImpl @Inject constructor(
     private val remoteDataSource: MovieRemoteDataSource
-): MovieRepository {
+) : MovieRepository {
 
     override fun getMovies(
         scope: CoroutineScope,
@@ -40,7 +39,7 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun getGenres(): Flow<Result<List<Genre>>> = remoteDataSource.getMovieGenres().map {
-        when(it){
+        when (it) {
             is Result.Success -> Result.Success(it.data.genres ?: emptyList())
             is Result.Error -> Result.Error(it.error)
             is Result.Loading -> Result.Loading(it.isLoading)

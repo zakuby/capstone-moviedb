@@ -36,8 +36,8 @@ class TvShowPageDataSource constructor(
     private fun fetchTvShows(page: Int = 1, callback: (List<TvShow>) -> Unit) {
         scope.launch {
             when (val resp = dataSource.getTvShows(page, keywords)) {
-                is Success ->  {
-                    if (resp.data.results.isNullOrEmpty()){
+                is Success -> {
+                    if (resp.data.results.isNullOrEmpty()) {
                         resultPaging.postValue(ResultPaging.Empty(true))
                         resultPaging.postValue(ResultPaging.Loading(false))
                     } else {

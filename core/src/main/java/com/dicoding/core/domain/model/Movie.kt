@@ -1,8 +1,5 @@
 package com.dicoding.core.domain.model
 
-import androidx.recyclerview.widget.DiffUtil
-import com.google.gson.annotations.SerializedName
-
 data class Movie(
     val id: Int,
     val title: String? = "",

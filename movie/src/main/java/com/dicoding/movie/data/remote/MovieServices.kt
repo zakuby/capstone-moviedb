@@ -1,6 +1,5 @@
 package com.dicoding.movie.data.remote
 
-import com.dicoding.core.domain.model.Movie
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

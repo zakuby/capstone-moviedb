@@ -5,11 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.core.domain.model.*
+import com.dicoding.core.domain.model.Cast
+import com.dicoding.core.domain.model.Detail
+import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.Review
+import com.dicoding.core.domain.model.Video
 import com.dicoding.detail.data.repository.DetailRepositoryImpl
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
 class DetailInteractor @Inject constructor(
     private val repository: DetailRepositoryImpl

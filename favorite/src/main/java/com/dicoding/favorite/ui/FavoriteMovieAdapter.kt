@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dicoding.core.base.BaseAdapter
 import com.dicoding.core.base.BaseViewHolder
-import com.dicoding.core.data.local.models.MovieEntity
 import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.utils.formatDate
 import com.dicoding.core.utils.loadImageUrl

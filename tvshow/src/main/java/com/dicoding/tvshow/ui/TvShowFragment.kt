@@ -9,12 +9,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.core.base.BaseFragment
-import com.dicoding.core.domain.model.FilterType
 import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.FilterType
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart
 import com.dicoding.core.utils.observe
-import com.dicoding.core.domain.model.DetailType
 import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.tvshow.R
 import com.dicoding.tvshow.databinding.FragmentTvShowBinding
@@ -90,7 +90,7 @@ class TvShowFragment : BaseFragment<FragmentTvShowBinding>() {
 
     private fun retryLoadTvShow() = viewModel.searchTvShows("")
 
-    private fun gotoDetailTvShow(id: Int){
+    private fun gotoDetailTvShow(id: Int) {
         val detailIntent = Intent(activity, DetailActivity::class.java).apply {
             putExtra(DetailActivity.EXTRA_DETAIL_ID, id)
             putExtra(DetailActivity.EXTRA_DETAIL_TYPE, DetailType.TV_SHOW)

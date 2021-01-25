@@ -2,10 +2,10 @@ package com.dicoding.movie.data
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.data.remote.response.Result.Error
 import com.dicoding.core.data.remote.response.Result.Success
 import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.domain.model.Movie
 import com.dicoding.movie.data.remote.MovieRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -38,7 +38,7 @@ class MoviePageDataSource constructor(
         scope.launch {
             when (val resp = dataSource.getMovies(page, genres, keywords)) {
                 is Success -> {
-                    if (resp.data.results.isNullOrEmpty()){
+                    if (resp.data.results.isNullOrEmpty()) {
                         resultPaging.postValue(ResultPaging.Empty(true))
                         resultPaging.postValue(ResultPaging.Loading(false))
                     } else {

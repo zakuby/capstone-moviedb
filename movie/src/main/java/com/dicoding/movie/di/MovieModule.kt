@@ -16,7 +16,6 @@ abstract class MovieModule {
     @Binds
     abstract fun provideRepository(movieRepository: MovieRepositoryImpl): MovieRepository
 
-
     @Binds
     abstract fun provideUseCase(movieInteractor: MovieInteractor): MovieUseCase
 }

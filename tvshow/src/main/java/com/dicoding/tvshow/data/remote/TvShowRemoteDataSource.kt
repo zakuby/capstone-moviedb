@@ -7,7 +7,7 @@ import javax.inject.Singleton
 @Singleton
 class TvShowRemoteDataSource @Inject constructor(
     private val services: TvShowServices
-) : BaseRemoteDataSource(){
+) : BaseRemoteDataSource() {
 
     suspend fun getTvShows(page: Int, keywords: String? = "") =
         getResult {

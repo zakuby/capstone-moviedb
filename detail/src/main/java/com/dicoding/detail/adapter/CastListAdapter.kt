@@ -18,7 +18,7 @@ class CastListAdapter : BaseAdapter<Cast, ItemCastBinding>() {
         return ViewHolder(binding)
     }
 
-    inner class ViewHolder(binding: ItemCastBinding) : BaseViewHolder<Cast, ItemCastBinding>(binding){
+    inner class ViewHolder(binding: ItemCastBinding) : BaseViewHolder<Cast, ItemCastBinding>(binding) {
         override fun bind(item: Cast) {
             binding.apply {
                 castImage.loadImageUrl(item.profileImage)
@@ -26,6 +26,5 @@ class CastListAdapter : BaseAdapter<Cast, ItemCastBinding>() {
                 castCharacter.text = item.character
             }
         }
-
     }
 }

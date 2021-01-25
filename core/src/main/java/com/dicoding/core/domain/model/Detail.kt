@@ -11,4 +11,3 @@ data class Detail(
     val isFavorite: Boolean = false,
     val genres: List<Genre>? = emptyList()
 )
-

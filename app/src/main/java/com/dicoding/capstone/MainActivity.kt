@@ -45,7 +45,7 @@ class MainActivity : BaseMainActivity() {
             bottomNavBar.apply {
                 itemIconTintList = null
                 setOnNavigationItemSelectedListener { item ->
-                    supportActionBar?.title = when(item.itemId){
+                    supportActionBar?.title = when (item.itemId) {
                         R.id.movies_fragment -> getString(R.string.bottom_nav_movie_title)
                         R.id.tv_show_fragment -> getString(R.string.bottom_nav_tv_show_title)
                         else -> getString(R.string.bottom_nav_favorite_title)

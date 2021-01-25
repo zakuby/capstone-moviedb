@@ -16,7 +16,6 @@ abstract class FavoriteModule {
     @Binds
     abstract fun provideRepository(favoriteRepository: FavoriteRepositoryImpl): FavoriteRepository
 
-
     @Binds
     abstract fun provideUseCase(favoriteInteractor: FavoriteInteractor): FavoriteUseCase
 }

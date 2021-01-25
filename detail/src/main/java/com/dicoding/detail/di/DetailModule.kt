@@ -16,7 +16,6 @@ abstract class DetailModule {
     @Binds
     abstract fun provideRepository(detailRepository: DetailRepositoryImpl): DetailRepository
 
-
     @Binds
     abstract fun provideUseCase(detailInteractor: DetailInteractor): DetailUseCase
 }

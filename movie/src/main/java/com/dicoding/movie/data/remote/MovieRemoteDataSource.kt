@@ -7,7 +7,7 @@ import javax.inject.Singleton
 @Singleton
 class MovieRemoteDataSource @Inject constructor(
     private val services: MovieServices
-) : BaseRemoteDataSource(){
+) : BaseRemoteDataSource() {
 
     suspend fun getMovies(page: Int, genres: String? = "", keywords: String? = "") =
         getResult {
