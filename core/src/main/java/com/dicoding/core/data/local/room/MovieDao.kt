@@ -1,11 +1,6 @@
 package com.dicoding.core.data.local.room
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.dicoding.core.data.local.models.MovieEntity
 import com.dicoding.core.data.local.models.MovieEntity.Companion.TABLE_NAME
 import kotlinx.coroutines.flow.Flow

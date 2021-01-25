@@ -1,9 +1,9 @@
-package com.dicoding.detail.data.local
+package com.dicoding.detail.data.remote
 
 import com.dicoding.core.domain.model.Genre
 import com.google.gson.annotations.SerializedName
 
-data class Detail(
+data class DetailResponse(
     val id: Int,
     @SerializedName(value = "title", alternate = ["name"])
     val title: String?,
@@ -21,7 +21,3 @@ data class Detail(
     val genres: List<Genre>? = emptyList()
 )
 
-enum class DetailType{
-    MOVIE,
-    TV_SHOW
-}

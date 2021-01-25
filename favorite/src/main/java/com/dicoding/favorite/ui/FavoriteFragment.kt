@@ -12,7 +12,7 @@ import com.dicoding.core.di.FavoriteModuleDependencies
 import com.dicoding.core.base.BaseFragment
 import com.dicoding.core.ui.CustomDialog
 import com.dicoding.core.utils.observe
-import com.dicoding.detail.data.local.DetailType
+import com.dicoding.core.domain.model.DetailType
 import com.dicoding.detail.ui.DetailActivity
 import com.dicoding.favorite.databinding.FragmentFavoriteBinding
 import com.dicoding.favorite.di.DaggerFavoriteComponent

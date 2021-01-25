@@ -4,13 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.dicoding.core.data.local.models.MovieEntity
-import com.dicoding.core.data.local.models.TvShowEntity
 import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.utils.SingleLiveEvent
-import com.dicoding.detail.data.local.DetailType
-import com.dicoding.favorite.data.repository.FavoriteRepositoryImpl
+import com.dicoding.core.domain.model.DetailType
 import com.dicoding.favorite.domain.FavoriteUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject

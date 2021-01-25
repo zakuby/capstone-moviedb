@@ -27,8 +27,8 @@ import com.dicoding.detail.adapter.CastListAdapter
 import com.dicoding.detail.adapter.GenreListAdapter
 import com.dicoding.detail.adapter.ReviewListAdapter
 import com.dicoding.detail.adapter.VideoListAdapter
-import com.dicoding.detail.data.local.Detail
-import com.dicoding.detail.data.local.DetailType
+import com.dicoding.core.domain.model.Detail
+import com.dicoding.core.domain.model.DetailType
 import com.dicoding.detail.databinding.ActivityDetailBinding
 import com.dicoding.detail.di.DaggerDetailComponent
 import dagger.hilt.android.EntryPointAccessors
@@ -205,7 +205,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(false) {
     private fun viewFullReview(review: Review) {
         val i = Intent(this, WebViewActivity::class.java).apply {
             putExtra("url", review.url)
-            putExtra("title", "Review Detail by ${review.author}")
+            putExtra("title", "DETAIL - ${review.name}")
         }
         startActivity(i)
     }

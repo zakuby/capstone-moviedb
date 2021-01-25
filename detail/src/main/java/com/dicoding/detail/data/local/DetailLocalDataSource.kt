@@ -2,12 +2,14 @@ package com.dicoding.detail.data.local
 
 import com.dicoding.core.data.local.models.MovieEntity
 import com.dicoding.core.data.local.models.TvShowEntity
-import com.dicoding.core.domain.model.Movie
-import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.data.local.room.MovieDao
 import com.dicoding.core.data.local.room.TvShowDao
+import com.dicoding.core.domain.model.Detail
+import com.dicoding.core.domain.model.DetailType
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class DetailLocalDataSource @Inject constructor(
     private val movieDao: MovieDao,
     private val tvShowDao: TvShowDao

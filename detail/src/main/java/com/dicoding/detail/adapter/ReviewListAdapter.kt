@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import com.dicoding.core.base.BaseViewHolder
 import com.dicoding.core.domain.model.Review
+import com.dicoding.detail.adapter.ReviewPageDataSourceFactory.Companion.DIFF_CALLBACK
 import com.dicoding.detail.databinding.ItemReviewBinding
 
-class ReviewListAdapter(val onClick: (Review) -> Unit) : PagedListAdapter<Review, ReviewListAdapter.ViewHolder>(
-    Review.DIFF_CALLBACK) {
+class ReviewListAdapter(
+    val onClick: (Review) -> Unit
+) : PagedListAdapter<Review, ReviewListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

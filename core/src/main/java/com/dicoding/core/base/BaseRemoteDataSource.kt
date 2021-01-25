@@ -9,6 +9,7 @@ import retrofit2.Response
 abstract class BaseRemoteDataSource {
     protected fun <T : Any> getFlowResult(call: suspend () -> Response<T>): Flow<Result<T>> = flow {
         try {
+            emit(Result.Loading(true))
             val response = call()
             if (response.isSuccessful) {
                 val body = response.body()
@@ -21,7 +22,9 @@ abstract class BaseRemoteDataSource {
                     else response.errorBody().toString()
                 emit(Result.Error(ErrorResponse(response.code(), errorMsg)))
             }
+            emit(Result.Loading(false))
         } catch (e: Exception) {
+            emit(Result.Loading(false))
             e.printStackTrace()
             emit(Result.Error(ErrorResponse(500, "Something wrong happened. Please try again later.")))
         }
