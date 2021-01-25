@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
-import java.util.*
+import java.util.Locale
 
 class SettingsFragment : PreferenceFragmentCompat() {
 

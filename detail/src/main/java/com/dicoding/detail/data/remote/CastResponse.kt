@@ -1,8 +1,8 @@
-package com.dicoding.core.data.local.models
+package com.dicoding.detail.data.remote
 
 import com.google.gson.annotations.SerializedName
 
-data class Cast(
+data class CastResponse(
     val character: String?,
     val name: String?,
     @SerializedName("profile_path") val profileImage: String?

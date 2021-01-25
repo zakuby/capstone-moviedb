@@ -1,13 +1,10 @@
 package com.dicoding.tvshow.data.remote
 
-import com.dicoding.core.data.local.models.TvShow
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TvShowServices {
-
 
     @GET("tv/top_rated")
     suspend fun getTopRatedTvShows(

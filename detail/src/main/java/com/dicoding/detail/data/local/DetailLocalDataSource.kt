@@ -1,11 +1,15 @@
 package com.dicoding.detail.data.local
 
-import com.dicoding.core.data.local.models.Movie
-import com.dicoding.core.data.local.models.TvShow
+import com.dicoding.core.data.local.models.MovieEntity
+import com.dicoding.core.data.local.models.TvShowEntity
 import com.dicoding.core.data.local.room.MovieDao
 import com.dicoding.core.data.local.room.TvShowDao
+import com.dicoding.core.domain.model.Detail
+import com.dicoding.core.domain.model.DetailType
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class DetailLocalDataSource @Inject constructor(
     private val movieDao: MovieDao,
     private val tvShowDao: TvShowDao
@@ -21,27 +25,37 @@ class DetailLocalDataSource @Inject constructor(
         else insertDetail(detail, type)
     }
 
-    private suspend fun insertDetail(detail: Detail, type: DetailType){
+    private suspend fun insertDetail(detail: Detail, type: DetailType) {
         if (type == DetailType.MOVIE) {
             movieDao.insert(
-                Movie(
-                    id = detail.id, title = detail.title, date = detail.date,
-                    description = detail.description, rate = detail.rate,
-                    posterImage = detail.posterImage, backgroundImage = detail.backgroundImage, isFavorite = true
+                MovieEntity(
+                    id = detail.id,
+                    title = detail.title,
+                    date = detail.date,
+                    description = detail.description,
+                    rate = detail.rate,
+                    posterImage = detail.posterImage,
+                    backgroundImage = detail.backgroundImage,
+                    isFavorite = true
                 )
             )
         } else {
             tvShowDao.insert(
-                TvShow(
-                    id = detail.id, title = detail.title, date = detail.date,
-                    description = detail.description, rate = detail.rate,
-                    posterImage = detail.posterImage, backgroundImage = detail.backgroundImage, isFavorite = true
+                TvShowEntity(
+                    id = detail.id,
+                    title = detail.title,
+                    date = detail.date,
+                    description = detail.description,
+                    rate = detail.rate,
+                    posterImage = detail.posterImage,
+                    backgroundImage = detail.backgroundImage,
+                    isFavorite = true
                 )
             )
         }
     }
 
-    private suspend fun removeDetail(id: Int, type: DetailType){
+    private suspend fun removeDetail(id: Int, type: DetailType) {
         if (type == DetailType.MOVIE)
             movieDao.deleteById(id)
         else

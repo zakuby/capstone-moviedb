@@ -6,9 +6,7 @@
 
     <include
         android:id="@+id/error_layout"
-        layout="@layout/view_offline"
-        android:visibility="gone"
-        tools:visibility="gone" />
+        layout="@layout/view_offline" />
 
 
     <FrameLayout

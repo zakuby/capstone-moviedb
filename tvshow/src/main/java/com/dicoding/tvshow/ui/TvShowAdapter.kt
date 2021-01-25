@@ -4,14 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import com.dicoding.core.base.BaseViewHolder
-import com.dicoding.core.data.local.models.TvShow
+import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.utils.formatDate
 import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.setProgressRating
+import com.dicoding.tvshow.data.TvShowPageDataSourceFactory.Companion.DIFF_CALLBACK
 import com.dicoding.tvshow.databinding.ItemTvShowBinding
 
-class TvShowAdapter(private val onClick: (TvShow) -> Unit) : PagedListAdapter<TvShow, TvShowAdapter.ViewHolder>(
-    TvShow.DIFF_CALLBACK) {
+class TvShowAdapter(
+    private val onClick: (TvShow) -> Unit
+) : PagedListAdapter<TvShow, TvShowAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position) ?: return

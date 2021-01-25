@@ -1,18 +1,21 @@
 package com.dicoding.tvshow.di
 
-import com.dicoding.tvshow.data.remote.TvShowServices
+import com.dicoding.tvshow.data.repository.TvShowRepository
+import com.dicoding.tvshow.data.repository.TvShowRepositoryImpl
+import com.dicoding.tvshow.domain.TvShowInteractor
+import com.dicoding.tvshow.domain.TvShowUseCase
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import javax.inject.Singleton
-import retrofit2.Retrofit
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class TvShowModule {
+abstract class TvShowModule {
 
-    @Provides
-    @Singleton
-    fun provideTvShowServices(retrofit: Retrofit): TvShowServices = retrofit.create(TvShowServices::class.java)
+    @Binds
+    abstract fun provideRepository(tvShowRepository: TvShowRepositoryImpl): TvShowRepository
+
+    @Binds
+    abstract fun provideUseCase(tvShowInteractor: TvShowInteractor): TvShowUseCase
 }

@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import com.dicoding.capstone.databinding.ActivitySettingsBinding
 import com.dicoding.core.base.BaseActivity
-import com.dicoding.core.data.local.models.Profile
+import com.dicoding.core.domain.model.Profile
 import com.dicoding.core.ui.WebViewActivity
 import com.dicoding.core.utils.startActivity
 
 class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivitySettingsBinding
         get() = ActivitySettingsBinding::inflate
-
 
     override fun initBinding() {
         setSupportActionBar(binding.toolbar)

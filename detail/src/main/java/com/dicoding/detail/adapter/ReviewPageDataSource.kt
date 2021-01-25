@@ -2,10 +2,10 @@ package com.dicoding.detail.adapter
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.dicoding.core.data.local.models.Review
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.detail.data.local.DetailType
+import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.Review
 import com.dicoding.detail.data.remote.DetailRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -33,15 +33,29 @@ class ReviewPageDataSource(
         fetchReviews(params.key) { callback.onResult(it, params.key + 1) }
     }
 
-
     private fun fetchReviews(page: Int = 1, callback: (List<Review>) -> Unit) {
         scope.launch {
-            when (val result = dataSource.getDetailReviews(id, type, page)) {
-                is Result.Success -> result.data.results?.let { callback(it) }
+            when (val resp = dataSource.getDetailReviews(id, type, page)) {
+                is Result.Success -> {
+                    if (resp.data.results.isNullOrEmpty()) {
+                        resultPaging.postValue(ResultPaging.Loading(false))
+                        resultPaging.value = ResultPaging.Empty(true)
+                    } else {
+                        val movies = resp.data.results ?: return@launch
+                        callback(movies.map {
+                            Review(
+                                id = it.id,
+                                name = "A review by ${it.author}",
+                                content = it.content,
+                                url = it.url
+                            )
+                        })
+                    }
+                }
                 is Result.Error -> {
-                    resultPaging.postValue(ResultPaging.Error(result.error))
-                    resultPaging.postValue(ResultPaging.Loading(false))
-                    resultPaging.postValue(ResultPaging.Empty(true))
+                    resultPaging.value = ResultPaging.Error(resp.error)
+                    resultPaging.value = ResultPaging.Loading(false)
+                    resultPaging.value = ResultPaging.Empty(true)
                 }
             }
         }

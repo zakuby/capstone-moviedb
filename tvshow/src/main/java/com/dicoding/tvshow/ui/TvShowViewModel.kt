@@ -7,13 +7,13 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
-import com.dicoding.core.data.local.models.FilterType
-import com.dicoding.core.data.local.models.TvShow
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.tvshow.data.TvShowRepository
+import com.dicoding.core.domain.model.FilterType
+import com.dicoding.core.domain.model.TvShow
+import com.dicoding.tvshow.domain.TvShowUseCase
 
 class TvShowViewModel @ViewModelInject constructor(
-    private val repository: TvShowRepository
+    private val useCase: TvShowUseCase
 ) : ViewModel() {
 
     private val filterData = MutableLiveData<String>().apply { postValue("") }
@@ -23,9 +23,9 @@ class TvShowViewModel @ViewModelInject constructor(
     val tvShows: LiveData<PagedList<TvShow>>
         get() = Transformations.switchMap(filterData) { filter ->
             if (filter.contains("FILTER_BY_KEYWORD"))
-                repository.getMovies(viewModelScope, filter.replace("FILTER_BY_KEYWORD", ""), resultPaging)
+                useCase.getTvShows(viewModelScope, filter.replace("FILTER_BY_KEYWORD", ""), resultPaging)
             else
-                repository.getMovies(viewModelScope, resultPaging = resultPaging)
+                useCase.getTvShows(viewModelScope, resultPaging = resultPaging)
         }
 
     fun searchTvShows(keywords: String?, filterType: FilterType = FilterType.DEFAULT) {

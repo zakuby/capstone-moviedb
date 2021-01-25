@@ -2,30 +2,31 @@ package com.dicoding.favorite.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.dicoding.core.data.local.models.Movie
-import com.dicoding.core.data.local.models.TvShow
+import com.dicoding.core.domain.model.DetailType
+import com.dicoding.core.domain.model.Movie
+import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.utils.SingleLiveEvent
-import com.dicoding.detail.data.local.DetailType
-import com.dicoding.favorite.data.FavoriteRepository
-import kotlinx.coroutines.launch
+import com.dicoding.favorite.domain.FavoriteUseCase
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 class FavoriteViewModel @Inject constructor(
-    private val repository: FavoriteRepository
+    private val useCase: FavoriteUseCase
 ) : ViewModel() {
 
-    val movies: LiveData<List<Movie>> = repository.getFavoriteMovies()
+    val movies: LiveData<List<Movie>> = useCase.getFavoriteMovies().asLiveData(viewModelScope.coroutineContext)
 
-    val tvShows: LiveData<List<TvShow>> = repository.getFavoriteTvShows()
+    val tvShows: LiveData<List<TvShow>> = useCase.getFavoriteTvShows().asLiveData(viewModelScope.coroutineContext)
 
     val removeMovieEvent = SingleLiveEvent<Unit>()
 
     fun removeFavorite(id: Int, type: DetailType) = viewModelScope.launch {
         if (type == DetailType.MOVIE)
-            repository.removeMovie(id)
+            useCase.removeMovie(id)
         else
-            repository.removeTvShow(id)
+            useCase.removeTvShow(id)
         removeMovieEvent.call()
     }
 }
