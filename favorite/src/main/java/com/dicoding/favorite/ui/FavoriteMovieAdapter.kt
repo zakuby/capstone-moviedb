@@ -4,34 +4,35 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dicoding.core.base.BaseAdapter
 import com.dicoding.core.base.BaseViewHolder
-import com.dicoding.core.data.local.models.Movie
+import com.dicoding.core.data.local.models.MovieEntity
+import com.dicoding.core.domain.model.Movie
 import com.dicoding.core.utils.formatDate
 import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.core.utils.setProgressRating
 import com.dicoding.favorite.databinding.ItemFavoriteMovieBinding
 
 class FavoriteMovieAdapter(
-    val onClick: (Movie) -> Unit,
+    val onClick: (MovieEntity) -> Unit,
     val removeButton: (Int) -> Unit
-) : BaseAdapter<Movie, ItemFavoriteMovieBinding>() {
+) : BaseAdapter<MovieEntity, ItemFavoriteMovieBinding>() {
 
     fun isEmpty() = items.isNullOrEmpty()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<Movie, ItemFavoriteMovieBinding> {
+    ): BaseViewHolder<MovieEntity, ItemFavoriteMovieBinding> {
         val binding = ItemFavoriteMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: BaseViewHolder<Movie, ItemFavoriteMovieBinding>,
+        holder: BaseViewHolder<MovieEntity, ItemFavoriteMovieBinding>,
         position: Int
     ) = holder.bind(getItem(position))
 
-    inner class ViewHolder(binding: ItemFavoriteMovieBinding) : BaseViewHolder<Movie, ItemFavoriteMovieBinding>(binding) {
-        override fun bind(item: Movie) {
+    inner class ViewHolder(binding: ItemFavoriteMovieBinding) : BaseViewHolder<MovieEntity, ItemFavoriteMovieBinding>(binding) {
+        override fun bind(item: MovieEntity) {
             binding.apply {
                 itemView.setOnClickListener { onClick(item) }
                 movieImage.loadImageUrl(item.posterImage)

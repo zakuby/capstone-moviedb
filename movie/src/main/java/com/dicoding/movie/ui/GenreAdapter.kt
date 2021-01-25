@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dicoding.core.base.BaseAdapter
 import com.dicoding.core.base.BaseViewHolder
-import com.dicoding.core.data.local.models.Genre
+import com.dicoding.core.domain.model.Genre
 import com.dicoding.movie.databinding.ItemGenreFilterBinding
 
 class GenreAdapter : BaseAdapter<Genre, ItemGenreFilterBinding>() {

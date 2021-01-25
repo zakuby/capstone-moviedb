@@ -1,7 +1,9 @@
 package com.dicoding.detail.data.local
 
-import com.dicoding.core.data.local.models.Movie
-import com.dicoding.core.data.local.models.TvShow
+import com.dicoding.core.data.local.models.MovieEntity
+import com.dicoding.core.data.local.models.TvShowEntity
+import com.dicoding.core.domain.model.Movie
+import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.data.local.room.MovieDao
 import com.dicoding.core.data.local.room.TvShowDao
 import javax.inject.Inject
@@ -24,18 +26,28 @@ class DetailLocalDataSource @Inject constructor(
     private suspend fun insertDetail(detail: Detail, type: DetailType){
         if (type == DetailType.MOVIE) {
             movieDao.insert(
-                Movie(
-                    id = detail.id, title = detail.title, date = detail.date,
-                    description = detail.description, rate = detail.rate,
-                    posterImage = detail.posterImage, backgroundImage = detail.backgroundImage, isFavorite = true
+                MovieEntity(
+                    id = detail.id,
+                    title = detail.title,
+                    date = detail.date,
+                    description = detail.description,
+                    rate = detail.rate,
+                    posterImage = detail.posterImage,
+                    backgroundImage = detail.backgroundImage,
+                    isFavorite = true
                 )
             )
         } else {
             tvShowDao.insert(
-                TvShow(
-                    id = detail.id, title = detail.title, date = detail.date,
-                    description = detail.description, rate = detail.rate,
-                    posterImage = detail.posterImage, backgroundImage = detail.backgroundImage, isFavorite = true
+                TvShowEntity(
+                    id = detail.id,
+                    title = detail.title,
+                    date = detail.date,
+                    description = detail.description,
+                    rate = detail.rate,
+                    posterImage = detail.posterImage,
+                    backgroundImage = detail.backgroundImage,
+                    isFavorite = true
                 )
             )
         }

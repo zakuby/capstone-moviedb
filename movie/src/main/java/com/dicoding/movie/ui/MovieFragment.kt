@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.core.base.BaseFragment
-import com.dicoding.core.data.local.models.FilterType
+import com.dicoding.core.data.remote.response.Result
+import com.dicoding.core.domain.model.FilterType
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart
@@ -70,7 +71,14 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>() {
 
     private fun subscribeUI() {
         observe(viewModel.movies, adapterMovie::submitList)
-        observe(viewModel.genres, adapterGenre::submitList)
+        observe(viewModel.genres, { result ->
+            if (result is Result.Success){
+                binding.btnFilter.isGone(false)
+                adapterGenre.submitList(result.data)
+            } else {
+                binding.btnFilter.isGone(true)
+            }
+        })
         observe(viewModel.resultPaging, { result ->
             when (result) {
                 is ResultPaging.Empty -> {

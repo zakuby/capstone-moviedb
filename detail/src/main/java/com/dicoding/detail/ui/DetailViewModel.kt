@@ -2,12 +2,11 @@ package com.dicoding.detail.ui
 
 import androidx.lifecycle.*
 import androidx.paging.PagedList
-import com.dicoding.core.data.local.models.Cast
-import com.dicoding.core.data.local.models.Review
-import com.dicoding.core.data.local.models.Video
+import com.dicoding.core.domain.model.Cast
+import com.dicoding.core.domain.model.Review
+import com.dicoding.core.domain.model.Video
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
-import com.dicoding.core.utils.SingleLiveEvent
 import com.dicoding.detail.data.local.Detail
 import com.dicoding.detail.data.DetailRepository
 import com.dicoding.detail.data.local.DetailType

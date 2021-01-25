@@ -1,6 +1,6 @@
 package com.dicoding.detail.data.local
 
-import com.dicoding.core.data.local.models.Genre
+import com.dicoding.core.domain.model.Genre
 import com.google.gson.annotations.SerializedName
 
 data class Detail(

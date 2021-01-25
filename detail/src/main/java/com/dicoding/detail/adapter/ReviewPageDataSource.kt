@@ -2,7 +2,7 @@ package com.dicoding.detail.adapter
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.dicoding.core.data.local.models.Review
+import com.dicoding.core.domain.model.Review
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.detail.data.local.DetailType

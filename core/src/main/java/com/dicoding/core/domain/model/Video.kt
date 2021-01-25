@@ -1,4 +1,4 @@
-package com.dicoding.core.data.local.models
+package com.dicoding.core.domain.model
 
 data class Video(
     val key: String? = "",

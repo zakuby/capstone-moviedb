@@ -9,7 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.core.base.BaseFragment
-import com.dicoding.core.data.local.models.FilterType
+import com.dicoding.core.domain.model.FilterType
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.utils.isGone
 import com.dicoding.core.utils.isShimmerStart

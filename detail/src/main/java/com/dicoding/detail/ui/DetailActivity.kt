@@ -10,9 +10,9 @@ import androidx.core.view.isGone
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.core.base.BaseActivity
-import com.dicoding.core.data.local.models.Cast
-import com.dicoding.core.data.local.models.Review
-import com.dicoding.core.data.local.models.Video
+import com.dicoding.core.domain.model.Cast
+import com.dicoding.core.domain.model.Review
+import com.dicoding.core.domain.model.Video
 import com.dicoding.core.data.remote.response.Result
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.core.di.FavoriteModuleDependencies

@@ -6,26 +6,26 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.dicoding.core.data.local.models.Movie
-import com.dicoding.core.data.local.models.Movie.Companion.TABLE_NAME
+import com.dicoding.core.data.local.models.MovieEntity
+import com.dicoding.core.data.local.models.MovieEntity.Companion.TABLE_NAME
 
 @Dao
 interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(movie: Movie)
+    suspend fun insert(movie: MovieEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(movies: List<Movie>)
+    suspend fun insertAll(movies: List<MovieEntity>)
 
     @Query("SELECT * FROM $TABLE_NAME WHERE id = :id")
-    suspend fun selectById(id: Int): Movie?
+    suspend fun selectById(id: Int): MovieEntity?
 
     @Query("SELECT * FROM $TABLE_NAME")
-    fun selectAll(): LiveData<List<Movie>>
+    fun selectAll(): LiveData<List<MovieEntity>>
 
     @Update
-    suspend fun update(movie: Movie)
+    suspend fun update(movie: MovieEntity)
 
     @Query("DELETE FROM $TABLE_NAME WHERE id = :id")
     suspend fun deleteById(id: Int)

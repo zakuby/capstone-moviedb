@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.dicoding.core.data.local.models.Review
+import com.dicoding.core.domain.model.Review
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.detail.adapter.ReviewPageDataSourceFactory
 import com.dicoding.detail.data.local.Detail

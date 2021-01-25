@@ -3,8 +3,10 @@ package com.dicoding.favorite.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.core.data.local.models.Movie
-import com.dicoding.core.data.local.models.TvShow
+import com.dicoding.core.data.local.models.MovieEntity
+import com.dicoding.core.data.local.models.TvShowEntity
+import com.dicoding.core.domain.model.Movie
+import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.utils.SingleLiveEvent
 import com.dicoding.detail.data.local.DetailType
 import com.dicoding.favorite.data.FavoriteRepository
@@ -15,9 +17,9 @@ class FavoriteViewModel @Inject constructor(
     private val repository: FavoriteRepository
 ) : ViewModel() {
 
-    val movies: LiveData<List<Movie>> = repository.getFavoriteMovies()
+    val movies: LiveData<List<MovieEntity>> = repository.getFavoriteMovies()
 
-    val tvShows: LiveData<List<TvShow>> = repository.getFavoriteTvShows()
+    val tvShows: LiveData<List<TvShowEntity>> = repository.getFavoriteTvShows()
 
     val removeMovieEvent = SingleLiveEvent<Unit>()
 

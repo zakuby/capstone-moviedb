@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dicoding.core.base.BaseAdapter
 import com.dicoding.core.base.BaseViewHolder
-import com.dicoding.core.data.local.models.Cast
+import com.dicoding.core.domain.model.Cast
 import com.dicoding.core.utils.loadImageUrl
 import com.dicoding.detail.databinding.ItemCastBinding
 

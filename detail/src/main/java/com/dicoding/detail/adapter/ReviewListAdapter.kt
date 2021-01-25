@@ -2,17 +2,18 @@ package com.dicoding.detail.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.dicoding.core.base.BaseAdapter
+import androidx.paging.PagedListAdapter
 import com.dicoding.core.base.BaseViewHolder
-import com.dicoding.core.data.local.models.Review
+import com.dicoding.core.domain.model.Review
 import com.dicoding.detail.databinding.ItemReviewBinding
 
-class ReviewListAdapter(val onClick: (Review) -> Unit) : BaseAdapter<Review, ItemReviewBinding>() {
+class ReviewListAdapter(val onClick: (Review) -> Unit) : PagedListAdapter<Review, ReviewListAdapter.ViewHolder>(
+    Review.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<Review, ItemReviewBinding> {
+    ): ViewHolder {
         val binding = ItemReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
@@ -26,5 +27,10 @@ class ReviewListAdapter(val onClick: (Review) -> Unit) : BaseAdapter<Review, Ite
             }
         }
 
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position) ?: return
+        holder.bind(item)
     }
 }

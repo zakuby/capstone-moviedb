@@ -3,7 +3,8 @@ package com.dicoding.tvshow.data
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PagedList
-import com.dicoding.core.data.local.models.TvShow
+import androidx.recyclerview.widget.DiffUtil
+import com.dicoding.core.domain.model.TvShow
 import com.dicoding.core.data.remote.response.ResultPaging
 import com.dicoding.tvshow.data.remote.TvShowRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
@@ -34,5 +35,15 @@ class TvShowPageDataSourceFactory(
             .setPageSize(10)
             .setEnablePlaceholders(false)
             .build()
+
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TvShow>() {
+            override fun areContentsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

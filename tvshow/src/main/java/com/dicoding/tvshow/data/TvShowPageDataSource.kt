@@ -2,10 +2,10 @@ package com.dicoding.tvshow.data
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.dicoding.core.data.local.models.TvShow
 import com.dicoding.core.data.remote.response.Result.Error
 import com.dicoding.core.data.remote.response.Result.Success
 import com.dicoding.core.data.remote.response.ResultPaging
+import com.dicoding.core.domain.model.TvShow
 import com.dicoding.tvshow.data.remote.TvShowRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -35,10 +35,29 @@ class TvShowPageDataSource constructor(
 
     private fun fetchTvShows(page: Int = 1, callback: (List<TvShow>) -> Unit) {
         scope.launch {
-            when (val result = dataSource.getTvShows(page, keywords)) {
-                is Success -> result.data.results?.let { callback(it) }
+            when (val resp = dataSource.getTvShows(page, keywords)) {
+                is Success ->  {
+                    if (resp.data.results.isNullOrEmpty()){
+                        resultPaging.postValue(ResultPaging.Empty(true))
+                        resultPaging.postValue(ResultPaging.Loading(false))
+                    } else {
+                        val movies = resp.data.results ?: return@launch
+                        callback(movies.map {
+                            TvShow(
+                                id = it.id,
+                                title = it.title,
+                                date = it.date,
+                                description = it.description,
+                                rate = it.rate,
+                                backgroundImage = it.backgroundImage,
+                                posterImage = it.posterImage,
+                                genres = it.genres
+                            )
+                        })
+                    }
+                }
                 is Error -> {
-                    resultPaging.postValue(ResultPaging.Error(result.error))
+                    resultPaging.postValue(ResultPaging.Error(resp.error))
                     resultPaging.postValue(ResultPaging.Empty(true))
                     resultPaging.postValue(ResultPaging.Loading(false))
                 }

@@ -1,6 +1,6 @@
 package com.dicoding.movie.data.remote
 
-import com.dicoding.core.data.local.models.Movie
+import com.dicoding.core.domain.model.Movie
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -12,7 +12,7 @@ import retrofit2.http.Query
 interface MovieServices {
 
     @GET("movie/{movie_id}")
-    suspend fun getMovieDetail(@Path("movie_id") movieId: Int): Response<Movie>
+    suspend fun getMovieDetail(@Path("movie_id") movieId: Int): Response<MovieResponse>
 
     @GET("movie/popular")
     suspend fun getPopularMovies(

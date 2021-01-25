@@ -1,17 +1,8 @@
 package com.dicoding.core.data.local.models
 
 import androidx.room.TypeConverter
+import com.dicoding.core.domain.model.Genre
 import com.google.gson.Gson
-
-data class Genre(
-    val id: Int?,
-    val name: String?,
-    var isChecked: Boolean = false
-) {
-    fun setCheck() {
-        isChecked = !isChecked
-    }
-}
 
 class GenreConverter {
     @TypeConverter
